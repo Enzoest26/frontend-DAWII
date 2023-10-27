@@ -3,6 +3,8 @@ import { ColDef, GridApi, GridReadyEvent } from 'ag-grid-community';
 import { Usuario } from 'src/app/modal/usuario';
 import { UsuarioService } from 'src/app/service/mantenimiento/usuario/usuario.service';
 
+declare var window : any;
+
 @Component({
   selector: 'app-usuario',
   templateUrl: './usuario.component.html',
@@ -14,10 +16,14 @@ export class UsuarioComponent implements OnInit {
 
   private gridApi! : GridApi;
 
+  formModal : any;
+
   constructor(private usuarioService : UsuarioService){}
 
   ngOnInit(): void {
-    
+    this.formModal = new window.bootstrap.Modal(
+      document.getElementById("modalUsuario")
+    );
   }
   /**
    * Creacion de las columnas que usamos 
@@ -111,6 +117,10 @@ export class UsuarioComponent implements OnInit {
     this.usuarioService.obtenerUsuarios().subscribe(data =>
       this.usuarios = data
     );
+  }
+
+  onClickRegistrar(){
+    this.formModal.show();
   }
 
 }
