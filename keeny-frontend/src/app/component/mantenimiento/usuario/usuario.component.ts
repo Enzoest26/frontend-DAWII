@@ -5,8 +5,12 @@ import { FormArray,
   FormGroup,
   Validators, } from '@angular/forms';
 import { ColDef, GridApi, GridReadyEvent } from 'ag-grid-community';
+import { Select2Data, Select2Option } from 'ng-select2-component';
+import { TipoUsuario } from 'src/app/modal/tipo-usuario';
 import { Usuario } from 'src/app/modal/usuario';
+import { TipousuarioService } from 'src/app/service/mantenimiento/tipousuario/tipousuario.service';
 import { UsuarioService } from 'src/app/service/mantenimiento/usuario/usuario.service';
+import { PATTERN_ALFABETICO } from 'src/app/util/constantes';
 declare var window : any;
 
 @Component({
@@ -24,7 +28,22 @@ export class UsuarioComponent implements OnInit {
 
   usuarioForm !: FormGroup; 
 
-  constructor(private usuarioService : UsuarioService, private formBuilder : FormBuilder){}
+  submited : Boolean = true;
+
+  select2Option : Select2Option[] = [];
+
+  constructor(private usuarioService : UsuarioService, private tipoUsuarioService : TipousuarioService, private formBuilder : FormBuilder){
+    this.usuarioForm = this.formBuilder.group({
+      nombre: ['', [Validators.required, Validators.minLength(2), Validators.pattern(PATTERN_ALFABETICO)]],
+      apellidoPaterno: ['', [Validators.required, Validators.pattern(PATTERN_ALFABETICO)]],
+      apellidoMaterno: ['', [Validators.required, Validators.pattern(PATTERN_ALFABETICO)]],
+      correo: ['', [Validators.required, Validators.email]],
+      clave: ['', Validators.required],
+      edad: ['', [Validators.required, Validators.max(100)]],
+      estado: ['', Validators.required]
+    });
+
+  }
 
   ngOnInit(): void {
     this.formModal = new window.bootstrap.Modal(
@@ -32,14 +51,11 @@ export class UsuarioComponent implements OnInit {
     );
 
 
-    this.usuarioForm = this.formBuilder.group({
-      nombre: ['', [Validators.required, Validators.minLength(2)]],
-      apellidoPaterno: ['', Validators.required],
-      apellidoMaterno: ['', Validators.required],
-      correo: ['', Validators.required],
-      clave: ['', Validators.required],
-      edad: ['', Validators.required],
-      estado: ['', Validators.required]
+    this.tipoUsuarioService.obtenerUsuarios().subscribe((data: TipoUsuario[]) => {
+      this.select2Option = data.map((item: TipoUsuario) => ({
+        value: item.idTipoUsuario.toString(),
+        label: item.descripcion.toString(),
+      }));
     });
 
     
@@ -161,6 +177,11 @@ export class UsuarioComponent implements OnInit {
   }
 
   onSubmit(){
-
+    if(this.usuarioForm.invalid)
+    {
+      this.submited = false;
+      return;
+    }
+    this.submited = true;
   }
 }

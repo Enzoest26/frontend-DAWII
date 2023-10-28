@@ -8,19 +8,17 @@
 <div class="modal fade bd-example-modal-lg" id="modalUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" (click)="onClickCerrar()" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+      <div class="modal-header justify-content-center" style="background-color: #87da3a;">
+        <h3 class="modal-title text-center" id="exampleModalLongTitle">NUEVO USUARIO</h3>
       </div>
-      <div class="modal-body">
-        <form [formGroup]="usuarioForm" (submit)="onSubmit()" >
+      <div class="modal-body" style="background-color: #f7f7f7;">
+        <form [formGroup]="usuarioForm" (ngSubmit)="onSubmit()" >
           <div class="form-group row">
             <label for="" class="col-sm-3 col-form-label">Nombre: </label>
             <div class="col-sm-8">
               <input type="text" class="form-control" formControlName="nombre">
             </div>
+
           </div>
           <div class="form-group row">
             <label for="" class="col-sm-3 col-form-label">Apellido Paterno: </label>
@@ -37,7 +35,10 @@
           <div class="form-group row">
             <label for="" class="col-sm-3 col-form-label">Correo: </label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" formControlName="correo">
+              <input type="text" class="form-control" formControlName="correo" [ngClass]="{'is-invalid': !submited && usuarioForm.hasError('required', 'correo')}">
+              <div class="text-danger" *ngIf="!submited && usuarioForm.hasError('required', 'correo')">
+                Ingrese un Correo
+              </div>
             </div>
           </div>
           <div class="form-group row">
@@ -47,27 +48,38 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="" class="col-sm-3 col-form-label">Edad: </label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" formControlName="edad">
+            <label for="" class="col-sm-3 col-form-label" required>Edad: </label>
+            <div class="col-sm-8" >
+              <input type="number" class="form-control" formControlName="edad" [ngClass]="{'is-invalid': !submited && usuarioForm.controls['edad'].errors}">
+              <div>
+                <div class="text-danger error-campo" *ngIf=" !submited && usuarioForm.hasError('required', 'edad')">
+                  Ingrese una Edad
+                </div>
+                <div class="text-danger error-campo" *ngIf="!submited && usuarioForm.hasError('max', 'edad')">
+                  Límite de edad superada. (100 max)
+                </div>
+              </div>
             </div>
+            
           </div>
           <div class="form-group row">
             <label for="" class="col-sm-3 col-form-label">Tipo Usuario: </label>
             <div class="col-sm-8">
-              <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+              <select2 [data]="select2Option" placeholder="Seleccione un Tipo Usuario">
+              </select2>
             </div>
           </div>
           <div>
+            
+          </div>
+          <div class="modal-footer justify-content-center">
             <button class="btn btn-primary" type="submit">
               Registrar
             </button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="onClickCerrar()">Cancelar</button>
           </div>
+          
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="onClickCerrar()">Cerrar</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>

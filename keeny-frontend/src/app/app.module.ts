@@ -9,6 +9,7 @@ import { FooterComponent } from './main/footer/footer/footer.component';
 import { NavbarComponent } from './main/navbar/navbar/navbar.component'
 import { AgGridModule } from 'ag-grid-angular';
 import {ReactiveFormsModule} from '@angular/forms';
+import { Select2Module } from 'ng-select2-component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     BrowserModule,
     HttpClientModule,
     AgGridModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    Select2Module
   ],
   providers: [],
   bootstrap: [AppComponent]
