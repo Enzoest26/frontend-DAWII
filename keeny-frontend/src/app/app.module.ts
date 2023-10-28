@@ -8,6 +8,7 @@ import { SidebarComponent } from './main/sidebar/sidebar/sidebar.component';
 import { FooterComponent } from './main/footer/footer/footer.component';
 import { NavbarComponent } from './main/navbar/navbar/navbar.component'
 import { AgGridModule } from 'ag-grid-angular';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AgGridModule } from 'ag-grid-angular';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AgGridModule
+    AgGridModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

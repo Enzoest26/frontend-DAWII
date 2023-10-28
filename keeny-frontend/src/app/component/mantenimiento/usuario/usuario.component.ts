@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators, } from '@angular/forms';
 import { ColDef, GridApi, GridReadyEvent } from 'ag-grid-community';
 import { Usuario } from 'src/app/modal/usuario';
 import { UsuarioService } from 'src/app/service/mantenimiento/usuario/usuario.service';
-
 declare var window : any;
 
 @Component({
@@ -18,12 +22,27 @@ export class UsuarioComponent implements OnInit {
 
   formModal : any;
 
-  constructor(private usuarioService : UsuarioService){}
+  usuarioForm !: FormGroup; 
+
+  constructor(private usuarioService : UsuarioService, private formBuilder : FormBuilder){}
 
   ngOnInit(): void {
     this.formModal = new window.bootstrap.Modal(
       document.getElementById("modalUsuario")
     );
+
+
+    this.usuarioForm = this.formBuilder.group({
+      nombre: ['', [Validators.required, Validators.minLength(2)]],
+      apellidoPaterno: ['', Validators.required],
+      apellidoMaterno: ['', Validators.required],
+      correo: ['', Validators.required],
+      clave: ['', Validators.required],
+      edad: ['', Validators.required],
+      estado: ['', Validators.required]
+    });
+
+    
   }
   /**
    * Creacion de las columnas que usamos 
@@ -106,7 +125,21 @@ export class UsuarioComponent implements OnInit {
         }
       },
     },
-    {field : "edad", headerName: "Edad"},
+    {
+      field : "edad",
+      headerName: "Edad",
+      filter: 'agTextColumnFilter',
+        filterParams: { 
+        filterOptions: ['Contenido'],
+        textCustomComparator: function (filter: any, value: any, filterText: string) {
+          return value.toLowerCase().includes(filterText.toLowerCase());
+        },
+        filterPlaceholder: "Filtrar",
+        textCustomFilterOptions: {
+          filterText: '',
+        }
+      },
+    },
     {field : "estado", headerName: "Estado"},
     {field : "tipoUsuario.descripcion", headerName: "Tipo Usuario"},
     {field : "", headerName: "Acción"}
@@ -123,4 +156,11 @@ export class UsuarioComponent implements OnInit {
     this.formModal.show();
   }
 
+  onClickCerrar(){
+    this.formModal.hide();
+  }
+
+  onSubmit(){
+
+  }
 }
