@@ -10,6 +10,14 @@ import { NavbarComponent } from './main/navbar/navbar/navbar.component'
 import { AgGridModule } from 'ag-grid-angular';
 import {ReactiveFormsModule} from '@angular/forms';
 import { Select2Module } from 'ng-select2-component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+//import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -24,7 +32,14 @@ import { Select2Module } from 'ng-select2-component';
     HttpClientModule,
     AgGridModule,
     ReactiveFormsModule,
-    Select2Module
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDialogModule,
+    MatSlideToggleModule,
+    MatButtonModule,
+    MatIconModule
+    //NoopAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
