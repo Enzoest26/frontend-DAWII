@@ -9,7 +9,7 @@
       <ng-template #dialogContent style="background-color: #f7f7f7;">
         <h1 mat-dialog-title class="text-center">REGISTRE UN USUARIO</h1>
         <form [formGroup]="usuarioForm" (ngSubmit)="onSubmit()" >
-          <div class="form-group row">
+          <div class="form-group row campos">
             <mat-form-field appearance="outline">
               <mat-label>Nombres</mat-label>
               <input matInput type="text"formControlName="nombre">
@@ -18,7 +18,7 @@
             </mat-form-field>
             
           </div>
-          <div class="form-group row">
+          <div class="form-group row campos">
             <mat-form-field appearance="outline">
               <mat-label>Apellido Paterno</mat-label>
               <input matInput type="text" formControlName="apellidoPaterno">
@@ -26,7 +26,7 @@
               <mat-error *ngIf="usuarioForm.hasError('pattern', 'apellidoPaterno')">*El Apellido Paterno debe ser <b>Alfabetico sin espacios</b></mat-error>
             </mat-form-field>
           </div>
-          <div class="form-group row">
+          <div class="form-group row campos">
             <mat-form-field appearance="outline">
               <mat-label>Apellido Materno</mat-label>
               <input matInput type="text" formControlName="apellidoMaterno">
@@ -34,7 +34,7 @@
               <mat-error *ngIf="usuarioForm.hasError('pattern', 'apellidoMaterno')">*El Apellido Materno debe ser <b>Alfabetico sin espacios</b></mat-error>
             </mat-form-field>
           </div>
-          <div class="form-group row">
+          <div class="form-group row campos">
             <mat-form-field appearance="outline">
               <mat-label>Correo</mat-label>
               <input matInput type="text" formControlName="correo">
@@ -42,23 +42,30 @@
               <mat-error *ngIf="usuarioForm.hasError('email', 'correo')">*Correo invalido. Ejm: ejemplo@ejemplo.com </mat-error>
             </mat-form-field>
           </div>
-          <div class="form-group row">
+          <div class="form-group row campos">
             <mat-form-field appearance="outline">
               <mat-label>Contraseña</mat-label>
               <input matInput type="text" formControlName="clave">
               <mat-error *ngIf="usuarioForm.hasError('required', 'clave')">*Campo Obligatorio</mat-error>
             </mat-form-field>
           </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <mat-form-field appearance="outline">
+          <div class="form-group row campos">
+            
+              <mat-form-field appearance="outline" [style.width.%]=50>
                 <mat-label>Edad</mat-label>
                 <input matInput type="number" formControlName="edad" [ngClass]="{'is-invalid': !submited && usuarioForm.controls['nombre'].errors}">
               </mat-form-field>
-            </div>
+            
+              <mat-form-field appearance="outline" [style.width.%]=50>
+                <mat-label>Edad</mat-label>
+                <input matInput type="number" formControlName="edad" [ngClass]="{'is-invalid': !submited && usuarioForm.controls['nombre'].errors}">
+              </mat-form-field> 
+            
+            
+            
           </div>
           
-          <div class="form-group row">
+          <div class="form-group row campos">
             <mat-form-field appearance="outline">
               <mat-label>Contraseña</mat-label>
               <input matInput type="text" formControlName="nombre" [ngClass]="{'is-invalid': !submited && usuarioForm.controls['nombre'].errors}">
