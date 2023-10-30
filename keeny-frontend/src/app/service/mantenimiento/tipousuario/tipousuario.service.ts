@@ -12,7 +12,7 @@ export class TipousuarioService {
   private url = BASE_URL + "/tipo-usuario/buscarTodos";
   constructor(private http : HttpClient) { }
 
-  obtenerUsuarios() : Observable<TipoUsuario[]>
+  obtenerTiposUsuarios() : Observable<TipoUsuario[]>
   {
     return this.http.get<TipoUsuario[]>(`${this.url}`);
   }
