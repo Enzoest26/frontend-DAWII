@@ -20,6 +20,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
 import {MatSnackBar, MatSnackBarRef, MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { AppRoutingModule } from './app-routing.module';
 //import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -44,7 +46,9 @@ import {MatSnackBar, MatSnackBarRef, MatSnackBarModule} from '@angular/material/
     MatIconModule,
     MatSelectModule,
     MatTableModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    AppRoutingModule,
+    MatSidenavModule
     //NoopAnimationsModule
   ],
   providers: [],
