@@ -13,7 +13,7 @@ import { TipoUsuario } from 'src/app/modal/tipo-usuario';
 import { Usuario } from 'src/app/modal/usuario';
 import { TipousuarioService } from 'src/app/service/mantenimiento/tipousuario/tipousuario.service';
 import { UsuarioService } from 'src/app/service/mantenimiento/usuario/usuario.service';
-import { PATTERN_ALFABETICO, PATTERN_ALFABETICO_ESPACIO, TITULO_ERROR_NOTIFICACION, TITULO_EXITO_NOTIFICACION } from 'src/app/util/constantes';
+import { PATTERN_ALFABETICO, PATTERN_ALFABETICO_ESPACIO, TITULO_ELIMINAR, TITULO_ERROR_NOTIFICACION, TITULO_EXITO_NOTIFICACION } from 'src/app/util/constantes';
 
 @Component({
   selector: 'app-usuario',
@@ -23,6 +23,7 @@ import { PATTERN_ALFABETICO, PATTERN_ALFABETICO_ESPACIO, TITULO_ERROR_NOTIFICACI
 export class UsuarioComponent implements OnInit {
   @ViewChild('dialogContent') dialogContent!: TemplateRef<any>
   @ViewChild('notificacion') notificacion!: TemplateRef<any>
+  @ViewChild('dialogEliminar') dialogEliminar!: TemplateRef<any>
   public usuarios!: Usuario[];
 
   public tiposUsuarios !: TipoUsuario[];
@@ -41,6 +42,8 @@ export class UsuarioComponent implements OnInit {
   dataUsuario: MatTableDataSource<Usuario>;
 
   tituloNotificacion ?: string;
+
+  contenidoDialogEliminar ?: any;
   constructor(private usuarioService : UsuarioService, private tipoUsuarioService : TipousuarioService
     , private formBuilder : FormBuilder, private dialog : MatDialog
     , private snackBar : MatSnackBar){
@@ -112,7 +115,6 @@ export class UsuarioComponent implements OnInit {
     let usuarioMostrar;
     this.usuarioService.obtenerUsuariosPorId(usuario!.idUsuario.toString()).subscribe(data => {
       usuarioMostrar = data;
-      console.log(usuarioMostrar.estado);
       if (usuarioMostrar) {
         this.usuarioForm.patchValue({
           nombre: usuarioMostrar.nombre,
@@ -132,7 +134,42 @@ export class UsuarioComponent implements OnInit {
 
   onClickEliminar(id : any)
   {
+    this.contenidoDialogEliminar = {
+      title: TITULO_ELIMINAR,
+      content: "¿Desea eliminar el usuario de ID: " + id + "?",
+      id: id
+    };
+    this.dialog.open(this.dialogEliminar);
+  }
 
+  cerrarDialogs(){
+    this.dialog.closeAll();
+  }
+
+  accionEliminar(id : any)
+  {
+    this.usuarioService.eliminarUsuario(id).subscribe({
+      next: data => {
+        this.baseResponse = data;
+        const usuario = this.usuarios.find(u => u.idUsuario === id);
+        let index = this.usuarios.findIndex(u => u.idUsuario === id);
+        let usuarioMostrar;
+        this.usuarioService.obtenerUsuariosPorId(usuario!.idUsuario.toString()).subscribe(data => {
+          usuarioMostrar = data;
+          this.dataUsuario.data.splice(index, 1);
+          this.dataUsuario.data.push(usuarioMostrar);
+          this.dataUsuario.data.sort((a, b) => a.idUsuario - b.idUsuario);
+          this.dataUsuario._updateChangeSubscription();
+          this.mostrarNotificacionExito();
+          this.dialog.closeAll();
+        });
+      },
+      error: (error : HttpErrorResponse) =>{
+        this.baseResponse = error.error;
+        this.mostrarNotificacionError();
+      }
+
+    });
   }
   limpiarFormulario()
   {

@@ -151,3 +151,20 @@
   <h4>{{tituloNotificacion}}</h4>
   <p *ngIf="baseResponse?.msjRespuesta">{{baseResponse?.msjRespuesta}}</p>
 </ng-template>
+
+<ng-template #dialogEliminar>
+  <div mat-dialog-content>
+    <h3>{{contenidoDialogEliminar.title}}</h3>
+    <p>{{contenidoDialogEliminar.content}}</p>
+    <p><b>*Recuerde que la eliminación es cambio de estado</b></p>
+    <div class="d-flex justify-content-between">
+      <button mat-raised-button (click)="accionEliminar(contenidoDialogEliminar.id)" color="warn">
+        Eliminar
+      </button>
+      <button mat-raised-button (click)="cerrarDialogs()">
+        Cancelar
+      </button>
+    </div>
+    
+  </div>
+</ng-template>
