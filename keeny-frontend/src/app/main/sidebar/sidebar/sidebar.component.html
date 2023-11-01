@@ -1,1 +1,42 @@
-<p>sidebar works!</p>
+<mat-expansion-panel [class.mat-elevation-z0]="true">
+    <mat-expansion-panel-header>
+        Inicio
+    </mat-expansion-panel-header>
+    <mat-nav-list>
+        <a mat-list-item [routerLink]="['/intranet']">
+            <p>Inicio</p>
+        </a>
+    </mat-nav-list>
+</mat-expansion-panel>
+<mat-expansion-panel [class.mat-elevation-z0]="true">
+    <mat-expansion-panel-header>
+        Mantenimiento
+    </mat-expansion-panel-header>
+    <mat-nav-list>
+        <a mat-list-item >
+            <p>Bebida</p>
+        </a>
+        <a mat-list-item routerLink="#">
+            <p>Comida</p>
+        </a>
+        <a mat-list-item routerLink="#">
+            <p>Cliente</p>
+        </a>
+        <a mat-list-item [routerLink]="['/intranet/mantenimiento-usuario']">
+            <p>Usuarios</p>
+        </a>
+    </mat-nav-list>
+</mat-expansion-panel>
+<mat-expansion-panel [class.mat-elevation-z0]="true">
+    <mat-expansion-panel-header>
+        Reporte
+    </mat-expansion-panel-header>
+    <mat-nav-list>
+        <a mat-list-item routerLink="#">
+            <p>Ventas</p>
+        </a>
+    </mat-nav-list>
+</mat-expansion-panel>
+
+
+

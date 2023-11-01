@@ -1,0 +1,25 @@
+<mat-sidenav-container class="sidenav-container">
+    
+    <mat-sidenav #sidenav mode="side" class="sidenav" [(opened)]="opened">
+        <button mat-icon-button >
+            <!--<mat-icon>{{ sidebarExpanded ? 'menu' : 'chevron_left' }}</mat-icon>-->
+        </button>
+        <div class="cont-info-usuario">
+            <div class="cont-img-icono">
+                <img src="../../../assets/imgs/img_logo.jpg" alt="">
+            </div>
+            <div class="cont-text-usuario">
+                <h3 class="text-center">Usuario</h3>
+            </div>
+           
+        </div>
+        
+
+        <app-sidebar></app-sidebar>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+

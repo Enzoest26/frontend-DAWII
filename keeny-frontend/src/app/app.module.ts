@@ -22,6 +22,11 @@ import {MatTableModule} from '@angular/material/table';
 import {MatSnackBar, MatSnackBarRef, MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { AppRoutingModule } from './app-routing.module';
+import { IntranetComponent } from './main/intranet/intranet.component';
+import { InicioComponent } from './component/inicio/inicio.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatListModule } from '@angular/material/list';
 //import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -30,7 +35,9 @@ import { AppRoutingModule } from './app-routing.module';
     UsuarioComponent,
     SidebarComponent,
     FooterComponent,
-    NavbarComponent
+    NavbarComponent,
+    IntranetComponent,
+    InicioComponent
   ],
   imports: [
     BrowserModule,
@@ -48,10 +55,14 @@ import { AppRoutingModule } from './app-routing.module';
     MatTableModule,
     MatSnackBarModule,
     AppRoutingModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatExpansionModule,
+    MatTooltipModule,
+    MatListModule
     //NoopAnimationsModule
   ],
-  providers: [],
+  exports:[],
+  providers: [MatSidenavModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
