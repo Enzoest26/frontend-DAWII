@@ -1,23 +1,31 @@
-<mat-sidenav-container class="sidenav-container">
-    
-    <mat-sidenav #sidenav mode="side" class="sidenav" [(opened)]="opened">
-        <button mat-icon-button >
-            <!--<mat-icon>{{ sidebarExpanded ? 'menu' : 'chevron_left' }}</mat-icon>-->
-        </button>
+<mat-sidenav-container class="sidenav-container" >
+    <mat-sidenav #sidenav mode="side" class="sidenav" opened [class.sidenav-close]="!opened" [class.sidenav-open]="opened">
+        <div class="cont-esconder">
+            <button mat-icon-button class="cont-boton" (click)="esconderSideBar()">
+                <mat-icon class="icon-sidebar">{{opened ? 'keyboard_double_arrow_left': 'keyboard_double_arrow_right'}}</mat-icon>
+            </button>
+        </div>
         <div class="cont-info-usuario">
-            <div class="cont-img-icono">
-                <img src="../../../assets/imgs/img_logo.jpg" alt="">
+            <div [class.cont-img-icono-escondido]="!opened" [class.cont-img-icono]="opened">
+                <img src="../../../assets/imgs/img_logo.jpg" alt="" [class.tamanio-img-escondido]="!opened" [class.tamanio-img]="opened">
             </div>
-            <div class="cont-text-usuario">
+            <div class="cont-text-usuario" *ngIf="opened">
                 <h3 class="text-center">Usuario</h3>
             </div>
-           
         </div>
-        
-
         <app-sidebar></app-sidebar>
+        <div [class.cont-btn-final-escondido]="!opened" [class.cont-btn-final]="opened">
+            <a mat-flat-button [class.btn-logout-escondido]="!opened" [class.btn-logout]="opened">
+                <mat-icon style="font-size: 40px; margin-left: 10px;">logout</mat-icon>
+                {{opened ? 'Cerrar Sesión' : ''}}
+            </a>
+            <a mat-flat-button [class.btn-volver-escondido]="!opened" [class.btn-volver]="opened">
+                <mat-icon style="font-size: 40px; margin-left: 10px;">undo</mat-icon>
+                {{opened ? 'Volver' : ''}}
+            </a>
+        </div>
     </mat-sidenav>
-    <mat-sidenav-content>
+    <mat-sidenav-content [class.sidenav-content-open]="opened" [class.sidenav-content-close]="!opened">
         <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>

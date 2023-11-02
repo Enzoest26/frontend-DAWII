@@ -64,6 +64,7 @@
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="headerColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: headerColumns;"></tr>
+    
   </table>
 
 </div>
@@ -72,6 +73,7 @@
 
 <ng-template #dialogContent style="background-color: #f7f7f7;">
   <h1 mat-dialog-title class="text-center">REGISTRE UN USUARIO</h1>
+  
   <form [formGroup]="usuarioForm" (ngSubmit)="onSubmit()" >
     <div class="form-group row campos">
       <mat-form-field appearance="outline">

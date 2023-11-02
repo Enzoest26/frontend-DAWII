@@ -26,9 +26,24 @@
     width: 100%;
     color: white;
 }
-.mdc-list-item p{
-    margin-top: 15px;
+.mdc-list-item span{
+    
     color: white;
     text-align: center;
     margin-left: 1rem;
+    font-size: 20px;
+}
+.mdc-list-item span {
+    vertical-align: middle; /* Alinea verticalmente el texto en relación con el icono */
+}
+.list-icon{
+    vertical-align: middle; 
+    margin-left: 2rem;
+
+}
+.list-icon-escondido{
+    vertical-align: middle; 
+    margin-left: 0.5rem;
+    font-size: 30px;
+    width: 110%;
 }

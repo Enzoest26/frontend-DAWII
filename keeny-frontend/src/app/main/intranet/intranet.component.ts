@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SidebarService } from '../sidebar/sidebar/sidebar.service';
 
 @Component({
   selector: 'app-intranet',
@@ -8,13 +9,18 @@ import { Component, OnInit } from '@angular/core';
 export class IntranetComponent implements OnInit{
   events: string[] = [];
   opened: boolean = true;
+
   ngOnInit(): void {
     console.log("Estoy Aqui")
   }
 
-  constructor()
+  constructor(private sidebarService: SidebarService )
   {
-    console.log("aaa");
+  }
+  esconderSideBar()
+  {
+    this.opened = !this.opened;
+    this.sidebarService.obtenerStatusSidebar(this.opened);
   }
 
 }

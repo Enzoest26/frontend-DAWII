@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SidebarService } from './sidebar.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,9 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
-  sidebarExpanded = true;
 
-  toggleSidebar() {
-    this.sidebarExpanded = !this.sidebarExpanded;
+  public estatus : Boolean = true;
+
+  constructor(public sidebarService : SidebarService)
+  {
+    this.estatus = this.sidebarService.opened;
+  }
+
+  estatusSidebar() {
+    this.estatus = this.sidebarService.opened;
+    return this.estatus;
   }
 }
