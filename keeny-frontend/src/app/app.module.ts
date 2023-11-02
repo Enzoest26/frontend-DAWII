@@ -28,6 +28,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatListModule } from '@angular/material/list';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { ClienteComponent } from './component/mantenimiento/cliente/cliente.component';
 //import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -38,7 +39,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     FooterComponent,
     NavbarComponent,
     IntranetComponent,
-    InicioComponent
+    InicioComponent,
+    ClienteComponent
   ],
   imports: [
     BrowserModule,

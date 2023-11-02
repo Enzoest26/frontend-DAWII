@@ -4,13 +4,15 @@ import { UsuarioComponent } from './component/mantenimiento/usuario/usuario.comp
 import { RouterModule, Routes } from '@angular/router';
 import { IntranetComponent } from './main/intranet/intranet.component';
 import { InicioComponent } from './component/inicio/inicio.component';
+import { ClienteComponent } from './component/mantenimiento/cliente/cliente.component';
 
 const routes : Routes = [
   {path: '', redirectTo: 'intranet', pathMatch: 'full'},
   {path: 'intranet', component: IntranetComponent, children: [
     {path: '', component: InicioComponent},
     {path: 'inicio', component: InicioComponent},
-    {path: 'mantenimiento-usuario', component: UsuarioComponent}
+    {path: 'mantenimiento-usuario', component: UsuarioComponent},
+    {path: 'mantenimiento-cliente', component: ClienteComponent}
   ]}
 ];
 
