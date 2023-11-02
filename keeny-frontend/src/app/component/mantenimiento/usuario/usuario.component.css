@@ -12,8 +12,8 @@
     border-right: 1px solid #c2c2c2 !important;
 }
 .tabla-datos{
-    width: 80%;
-    margin: 0 auto;
+    width: 90%;
+    margin: 0 auto 2rem auto;
 }
 .color-amarillo{
     background-color: #F8DF05 !important;
@@ -38,4 +38,12 @@
 .btn-registrar-general{
     width: 250px;
     height: 40px;
+    margin-top: 2rem;
+    margin-bottom: 2.5rem;
+}
+th{
+    font-size: 18px;
+}
+.titulo-mantenimiento{
+    font-size: 45px;
 }

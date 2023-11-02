@@ -32,7 +32,7 @@ export class UsuarioService {
     return this.http.post<any>(`${this.urlRegistrarUsuario}`, body);
   }
 
-  actualizarUsuario(body : any) : Observable<BaseResponse>
+  actualizarUsuario(body : any) : Observable<any>
   {
     return this.http.put<any>(`${this.urlActualizarUsuario}`, body);
   }

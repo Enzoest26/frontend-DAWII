@@ -27,6 +27,7 @@ import { InicioComponent } from './component/inicio/inicio.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatListModule } from '@angular/material/list';
+import {MatPaginatorModule} from '@angular/material/paginator';
 //import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -58,7 +59,8 @@ import { MatListModule } from '@angular/material/list';
     MatSidenavModule,
     MatExpansionModule,
     MatTooltipModule,
-    MatListModule
+    MatListModule,
+    MatPaginatorModule
     //NoopAnimationsModule
   ],
   exports:[],
