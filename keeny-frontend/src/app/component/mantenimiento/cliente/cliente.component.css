@@ -1,14 +1,14 @@
 .campos{
     margin: 15px 8% 0 8%;
 }
-.mat-column-idUsuario {
+.mat-column-id_cliente {
     width: 10px !important;
     font-weight: bold;
     padding-right: 24px;
     text-align: center;
     border-right: 1px solid currentColor;
 }
-.mat-column-nombre,.mat-column-apellidoPaterno,.mat-column-apellidoMaterno,.mat-column-correo,.mat-column-estado,.mat-column-tipoUsuario-descripcion, .mat-column-edad {
+.mat-column-nombre_cliente,.mat-column-apellidos_cliente,.mat-column-dni_cliente,.mat-column-fec_nac_cliente,.mat-column-telefono_cliente,.mat-column-edad_cliente, .mat-column-emailCliente, .mat-column-estado_cliente {
     border-right: 1px solid #c2c2c2 !important;
 }
 .tabla-datos{

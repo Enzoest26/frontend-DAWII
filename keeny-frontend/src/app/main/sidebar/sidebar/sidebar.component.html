@@ -28,7 +28,7 @@
             <span *ngIf="estatusSidebar()">Comida</span>
         </a>
         <a mat-list-item [routerLink]="['/intranet/mantenimiento-cliente']" #tooltip="matTooltip"
-            matTooltip="Cliente" [matTooltipPosition]="estatusSidebar() ? 'below' : 'right'">
+            matTooltip="Clientes" [matTooltipPosition]="estatusSidebar() ? 'below' : 'right'">
             <mat-icon [class.list-icon]="estatusSidebar()" [class.list-icon-escondido]="!estatusSidebar()">groups</mat-icon>
             <span *ngIf="estatusSidebar()">Cliente</span>
         </a>
