@@ -44,7 +44,7 @@ export class ClienteComponent implements OnInit, AfterViewInit{
 
   tipoModal? : number; // 0 REGISTRAR, 1 ACTUALIZAR
 
-  idClienteActualizar? : number;
+  id_clienteActualizar? : number;
 
 constructor(private clienteService: ClienteService, private formBuilder : FormBuilder, 
     private dialog : MatDialog, private snackBar : MatSnackBar) {
@@ -139,7 +139,7 @@ ngAfterViewInit(): void {
     }
     this.submited = true;
     let cliente = this.clienteForm.value;
-    cliente.id_cliente = this.idClienteActualizar;
+    cliente.id_cliente = this.id_clienteActualizar;
     cliente.estado_cliente = Number(cliente.estado_cliente);
     const index = this.dataCliente.data.findIndex(c => c.id_cliente === cliente.id_cliente);
     this.clienteService.actualizarClientes(cliente).subscribe({
@@ -173,12 +173,12 @@ ngAfterViewInit(): void {
           dni_cliente: clienteMostrar.dni_cliente,
           fec_nac_cliente: clienteMostrar.fec_nac_cliente,
           telefono_cliente: clienteMostrar.telefono_cliente,
-          edad_cliente: clienteMostrar.edad_cliente,
+          edad_cliente: clienteMostrar.edad_cliente.toString(),
           emailCliente: clienteMostrar.emailCliente,
           estado_cliente: clienteMostrar.estado_cliente.toString()
         });
       }
-      this.idClienteActualizar = clienteMostrar.id_cliente;
+      this.id_clienteActualizar = clienteMostrar.id_cliente;
     });
     this.tituloBoton = BOTON_ACTUALIZAR+ ' CLIENTE';
     this.tipoModal = 1;
