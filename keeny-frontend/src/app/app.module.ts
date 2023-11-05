@@ -29,6 +29,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatListModule } from '@angular/material/list';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { ClienteComponent } from './component/mantenimiento/cliente/cliente.component';
+import { LoginComponent } from './component/login/login.component';
+import { InicioPrincipalComponent } from './component/inicio-principal/inicio-principal.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatMenuModule} from '@angular/material/menu';
 //import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -40,7 +44,9 @@ import { ClienteComponent } from './component/mantenimiento/cliente/cliente.comp
     NavbarComponent,
     IntranetComponent,
     InicioComponent,
-    ClienteComponent
+    ClienteComponent,
+    LoginComponent,
+    InicioPrincipalComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +68,9 @@ import { ClienteComponent } from './component/mantenimiento/cliente/cliente.comp
     MatExpansionModule,
     MatTooltipModule,
     MatListModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatToolbarModule,
+    MatMenuModule
     //NoopAnimationsModule
   ],
   exports:[],

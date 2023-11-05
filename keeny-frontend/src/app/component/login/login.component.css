@@ -1,0 +1,35 @@
+.general-container{
+    height: 91.8%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #DD9D14;
+}
+.cont-login{
+    display: flex;
+    background-color: #FFFFFF;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.cont-left{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30rem;
+    height: 35rem;
+    justify-content: space-evenly;
+    
+}
+.cont-right img{
+    height: 35rem;
+    width: 25rem;
+}
+.mat-form-field{
+    width: 15rem !important;
+}
+button{
+    background-color: #D28C22 !important;
+    color: white !important;
+    width: 18rem;
+    height: 3rem !important;
+}

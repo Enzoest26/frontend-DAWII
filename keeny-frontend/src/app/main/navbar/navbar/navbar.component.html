@@ -1,1 +1,24 @@
-<p>navbar works!</p>
+<mat-toolbar style="height: 5rem;">
+      <img src="../../../../assets/imgs/img_logo.jpg" class="img-logo" />
+      <span class="example-spacer"></span>
+      <button mat-stroked-button>
+        Inicio
+      </button>
+      <button mat-stroked-button>
+        Catalogo
+      </button>
+      <button mat-icon-button style="margin-left: 2rem;">
+        <mat-icon>shopping_cart</mat-icon>
+      </button>
+      <button mat-icon-button style="margin-left: 1.5rem;" [matMenuTriggerFor]="belowMenu">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <mat-menu #belowMenu="matMenu" yPosition="below">
+        <button mat-menu-item *ngIf="!isAutenticado()" routerLink="/login">Ingresar</button>
+        <button mat-menu-item *ngIf="!isAutenticado()">Registrase</button>
+        <button mat-menu-item *ngIf="isAutenticado()" routerLink="/intranet">Intranet</button>
+        <button mat-menu-item *ngIf="isAutenticado()">Carrito de Compras</button>
+      </mat-menu>
+
+</mat-toolbar>
+<router-outlet></router-outlet>

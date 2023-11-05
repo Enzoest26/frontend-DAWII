@@ -5,9 +5,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { IntranetComponent } from './main/intranet/intranet.component';
 import { InicioComponent } from './component/inicio/inicio.component';
 import { ClienteComponent } from './component/mantenimiento/cliente/cliente.component';
+import { NavbarComponent } from './main/navbar/navbar/navbar.component';
+import { InicioPrincipalComponent } from './component/inicio-principal/inicio-principal.component';
+import { LoginComponent } from './component/login/login.component';
 
 const routes : Routes = [
-  {path: '', redirectTo: 'intranet', pathMatch: 'full'},
+  {path: '', component: NavbarComponent, children: [
+    {path: '', component: InicioPrincipalComponent},
+    {path: 'login', component: LoginComponent}
+  ]},
   {path: 'intranet', component: IntranetComponent, children: [
     {path: '', component: InicioComponent},
     {path: 'inicio', component: InicioComponent},

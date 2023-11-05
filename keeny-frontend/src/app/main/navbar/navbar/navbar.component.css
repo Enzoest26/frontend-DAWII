@@ -1,0 +1,8 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+.img-logo{
+    margin-top: 0rem;
+    width: 3rem;
+    height: 5rem;
+}
