@@ -159,10 +159,10 @@ ngAfterViewInit(): void {
     });
   }
 
-  onClickActualizar(id : any)
+  onClickActualizar(id_cliente : any)
   {
     this.onClickAbrirModal();
-    const cliente = this.clientes.find(c => c.id_cliente === id);
+    const cliente = this.clientes.find(c => c.id_cliente === id_cliente);
     let clienteMostrar;
     this.clienteService.obtenerClientesPorId(cliente!.id_cliente.toString()).subscribe(data => {
       clienteMostrar = data;
@@ -172,7 +172,7 @@ ngAfterViewInit(): void {
           apellidos_cliente: clienteMostrar.apellidos_cliente,
           dni_cliente: clienteMostrar.dni_cliente,
           fec_nac_cliente: clienteMostrar.fec_nac_cliente,
-          telefono_cliente: clienteMostrar.telefono_cliente,
+          telefono_cliente: clienteMostrar.telefono_cliente.toString(),
           edad_cliente: clienteMostrar.edad_cliente.toString(),
           emailCliente: clienteMostrar.emailCliente,
           estado_cliente: clienteMostrar.estado_cliente.toString()

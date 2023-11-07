@@ -127,7 +127,7 @@
       <div class="form-group row campos">
         <mat-form-field appearance="outline">
           <mat-label>Telefono</mat-label>
-          <input matInput type="text" formControlName="telefono_cliente">
+          <input matInput type="number" formControlName="telefono_cliente">
           <mat-error *ngIf="clienteForm.hasError('required', 'telefono_cliente')">*Campo Obligatorio</mat-error>
           <mat-error *ngIf="clienteForm.hasError('pattern', 'telefono_cliente')">*El telefono debe tener <b>9 digitos</b></mat-error>
         </mat-form-field>

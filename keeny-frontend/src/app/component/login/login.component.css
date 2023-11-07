@@ -3,7 +3,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #DD9D14;
+    background-color: #dd9d14;
+    background-image: url("https://www.transparenttextures.com/patterns/food.png");
 }
 .cont-login{
     display: flex;
