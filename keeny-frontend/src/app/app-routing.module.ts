@@ -8,6 +8,7 @@ import { ClienteComponent } from './component/mantenimiento/cliente/cliente.comp
 import { NavbarComponent } from './main/navbar/navbar/navbar.component';
 import { InicioPrincipalComponent } from './component/inicio-principal/inicio-principal.component';
 import { LoginComponent } from './component/login/login.component';
+import { ComidaComponent } from './component/mantenimiento/comida/comida.component';
 
 const routes : Routes = [
   {path: '', component: NavbarComponent, children: [
@@ -18,7 +19,8 @@ const routes : Routes = [
     {path: '', component: InicioComponent},
     {path: 'inicio', component: InicioComponent},
     {path: 'mantenimiento-usuario', component: UsuarioComponent},
-    {path: 'mantenimiento-cliente', component: ClienteComponent}
+    {path: 'mantenimiento-cliente', component: ClienteComponent},
+    {path: 'mantenimiento-comida', component: ComidaComponent}
   ]}
 ];
 

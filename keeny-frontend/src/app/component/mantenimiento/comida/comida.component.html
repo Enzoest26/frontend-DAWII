@@ -1,0 +1,156 @@
+<h2 class="text-center titulo-mantenimiento" style="margin-top: 4rem;">MANTENIMIENTO DE COMIDAS</h2>
+
+<div class="cont-button justify-content-end" style="display: flex;  margin: 20px 5% 20px 0;">
+    <button mat-raised-button (click)="onClickAbrirModal()" class="color-verde btn-registrar-general" style="font-size: 25px; padding-right: 40px;">
+        <mat-icon fontIcon="add_circle_outline" style="font-size: 40px; width: 90%; height: 100%;"></mat-icon>
+        REGISTRAR
+    </button>
+</div>
+
+<div class="tabla-datos">
+    <table mat-table [dataSource]="dataComida"  class="mat-elevation-z3 demo-table" style="border: 1px #c2c2c2 solid;">
+        <ng-container matColumnDef="idComida">
+            <th mat-header-cell *matHeaderCellDef> ID </th>
+            <td mat-cell *matCellDef="let comida"> {{comida.idComida}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="descComida">
+            <th mat-header-cell *matHeaderCellDef>DESCRIPCIÓN</th>
+            <td mat-cell *matCellDef="let comida"> {{comida.descComida}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="precioComida">
+            <th mat-header-cell *matHeaderCellDef>PRECIO</th>
+            <td mat-cell *matCellDef="let comida"> {{comida.precioComida}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="stockComida">
+            <th mat-header-cell *matHeaderCellDef>STOCK</th>
+            <td mat-cell *matCellDef="let comida"> {{comida.stockComida}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="tipoComida">
+            <th mat-header-cell *matHeaderCellDef >TIPO</th>
+            <td mat-cell *matCellDef="let comida"> {{comida.tipoComida}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="estadoComida">
+            <th mat-header-cell *matHeaderCellDef >ESTADO</th>
+            <td mat-cell *matCellDef="let comida">
+            <ng-container *ngIf="comida.estadoComida === 1"> Activo </ng-container>
+            <ng-container *ngIf="comida.estadoComida === 0"> Desactivado </ng-container>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="accion">
+
+            <th mat-header-cell *matHeaderCellDef> ACCIÓN</th>
+
+            <td mat-cell *matCellDef="let comida">
+              <button mat-fab class="color-amarillo btn-accion" (click)="onClickActualizar(comida.idComida)">
+                <mat-icon fontIcon="edit" ></mat-icon>
+              </button>
+
+              <button mat-fab class="color-rojo btn-accion" (click)="onClickEliminar(comida.idComida)">
+                <mat-icon fontIcon="delete"></mat-icon>
+              </button>
+            </td>
+
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="headerColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: headerColumns;"></tr>
+    
+    </table>
+
+    <mat-paginator #matPaginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons
+                   aria-label="Select page of periodic elements">
+    </mat-paginator>
+
+</div>
+
+
+<ng-template #dialogContent style="background-color: #f7f7f7;">
+    <h1 mat-dialog-title class="text-center">{{tituloBoton}}</h1>
+    
+    <form [formGroup]="comidaForm" >
+      <div class="form-group row campos">
+        <mat-form-field appearance="outline">
+          <mat-label>Descripción</mat-label>
+          <input matInput type="text"formControlName="descComida">
+          <mat-error *ngIf="comidaForm.hasError('required', 'descComida')">*Campo Obligatorio</mat-error>
+          <mat-error *ngIf="comidaForm.hasError('pattern', 'descComida')">*La descripción debe ser <b>Alfabetico con un espacios</b></mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group row campos">
+        <mat-form-field appearance="outline">
+          <mat-label>Precio</mat-label>
+          <input matInput type="number" formControlName="precioComida">
+          <mat-error *ngIf="comidaForm.hasError('required', 'precioComida')">*Campo Obligatorio</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group row campos">
+        <mat-form-field appearance="outline">
+          <mat-label>Stock</mat-label>
+          <input matInput type="number" formControlName="stockComida">
+          <mat-error *ngIf="comidaForm.hasError('required', 'stockComida')">*Campo Obligatorio</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group row campos">
+        <mat-form-field appearance="outline">
+          <mat-label>Tipo</mat-label>
+          <input matInput type="text" formControlName="tipoComida">
+          <mat-error *ngIf="comidaForm.hasError('required', 'tipoComida')">*Campo Obligatorio</mat-error>
+        </mat-form-field>
+      </div>
+      
+      <div class="form-group row campos">
+        <mat-form-field appearance="outline" [style.width.%]=50>
+          <mat-label>Estado</mat-label>
+          <mat-select formControlName="estadoComida">
+            <mat-option value="0">Desactivado</mat-option>
+            <mat-option value="1">Activo</mat-option>
+          </mat-select>
+          <mat-error *ngIf="comidaForm.hasError('required', 'estadoComida')">*Campo Obligatorio</mat-error>
+        </mat-form-field> 
+      </div>
+      
+      <div class="modal-footer justify-content-center">
+        <button mat-raised-button color="primary" (click)="registrarComida()" *ngIf="tipoModal == 0">
+          <mat-icon fontIcon="add"></mat-icon>
+          Registrar
+        </button>
+        <button mat-raised-button color="primary" (click)="actualizarComida()" *ngIf="tipoModal == 1">
+          <mat-icon fontIcon="edit"></mat-icon>
+          Actualizar
+        </button>
+      </div>
+      
+    </form>
+  </ng-template>
+  
+  <ng-template #notificacion>
+    <h4>{{tituloNotificacion}}</h4>
+    <p *ngIf="baseResponse?.msjRespuesta">{{baseResponse?.msjRespuesta}}</p>
+  </ng-template>
+  
+  <ng-template #dialogEliminar>
+    <div mat-dialog-content>
+      <h3>{{contenidoDialogEliminar.title}}</h3>
+      <p>{{contenidoDialogEliminar.content}}</p>
+      <p><b>*Recuerde que la eliminación es cambio de estado</b></p>
+      <div class="d-flex justify-content-between">
+        <button mat-raised-button (click)="accionEliminar(contenidoDialogEliminar.id)" color="warn">
+          Eliminar
+        </button>
+        <button mat-raised-button (click)="cerrarDialogs()">
+          Cancelar
+        </button>
+      </div>
+      
+    </div>
+  </ng-template>

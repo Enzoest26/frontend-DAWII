@@ -33,6 +33,7 @@ import { LoginComponent } from './component/login/login.component';
 import { InicioPrincipalComponent } from './component/inicio-principal/inicio-principal.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
+import { ComidaComponent } from './component/mantenimiento/comida/comida.component';
 //import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -46,7 +47,8 @@ import {MatMenuModule} from '@angular/material/menu';
     InicioComponent,
     ClienteComponent,
     LoginComponent,
-    InicioPrincipalComponent
+    InicioPrincipalComponent,
+    ComidaComponent
   ],
   imports: [
     BrowserModule,

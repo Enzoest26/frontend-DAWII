@@ -22,8 +22,8 @@
             <mat-icon [class.list-icon]="estatusSidebar()" [class.list-icon-escondido]="!estatusSidebar()">coffee</mat-icon>
             <span *ngIf="estatusSidebar()">Bebida</span>
         </a>
-        <a mat-list-item routerLink="#" #tooltip="matTooltip"
-            matTooltip="Comida" [matTooltipPosition]="estatusSidebar() ? 'below' : 'right'">
+        <a mat-list-item [routerLink]="['/intranet/mantenimiento-comida']" #tooltip="matTooltip"
+            matTooltip="Comidas" [matTooltipPosition]="estatusSidebar() ? 'below' : 'right'">
             <mat-icon [class.list-icon]="estatusSidebar()" [class.list-icon-escondido]="!estatusSidebar()">lunch_dining</mat-icon>
             <span *ngIf="estatusSidebar()">Comida</span>
         </a>
