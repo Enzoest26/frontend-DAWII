@@ -33,3 +33,7 @@
         </div>
     </div>
 </div>
+<ng-template #notificacion>
+    <h4>Incorrecto</h4>
+    <p *ngIf="response?.msjRespuesta">{{response?.msjRespuesta}}</p>
+  </ng-template>

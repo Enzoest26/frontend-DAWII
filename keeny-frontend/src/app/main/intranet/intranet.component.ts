@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SidebarService } from '../sidebar/sidebar/sidebar.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-intranet',
@@ -14,13 +15,18 @@ export class IntranetComponent implements OnInit{
     console.log("Estoy Aqui")
   }
 
-  constructor(private sidebarService: SidebarService )
+  constructor(private sidebarService: SidebarService, private router: Router )
   {
   }
   esconderSideBar()
   {
     this.opened = !this.opened;
     this.sidebarService.obtenerStatusSidebar(this.opened);
+  }
+  cerrarSesion()
+  {
+    localStorage.removeItem("token");
+    this.router.navigate(["login"]);
   }
 
 }

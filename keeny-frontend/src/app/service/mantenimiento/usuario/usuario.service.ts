@@ -10,11 +10,11 @@ import { BaseResponse } from 'src/app/modal/base-response';
 })
 export class UsuarioService {
 
-  private urlBuscarTordos = BASE_URL + "/usuario/buscarTodos";
-  private urlRegistrarUsuario = BASE_URL + "/usuario/registrar";
-  private urlActualizarUsuario = BASE_URL + "/usuario/actualizar";
-  private urlEliminarUsuario = BASE_URL + "/usuario/eliminar";
-  private urlBuscarPorIdUsuario = BASE_URL + "/usuario/buscarPorId";
+  private urlBuscarTordos = BASE_URL + "/intranet/usuario/buscarTodos";
+  private urlRegistrarUsuario = BASE_URL + "/intranet/usuario/registrar";
+  private urlActualizarUsuario = BASE_URL + "/intranet/usuario/actualizar";
+  private urlEliminarUsuario = BASE_URL + "/intranet/usuario/eliminar";
+  private urlBuscarPorIdUsuario = BASE_URL + "/intranet/usuario/buscarPorId";
   constructor(private http : HttpClient) { }
 
   obtenerUsuarios() : Observable<Usuario[]>

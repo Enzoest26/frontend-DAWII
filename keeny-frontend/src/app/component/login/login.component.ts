@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { BaseResponse } from 'src/app/modal/base-response';
 import { AutenticadoService } from 'src/app/service/autenticado/autenticado.service';
 import { LoginService } from 'src/app/service/login/login.service';
 
@@ -10,9 +12,13 @@ import { LoginService } from 'src/app/service/login/login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  @ViewChild('notificacion') notificacion!: TemplateRef<any>
 
   loginForm : FormGroup;
-  constructor(private loginSevice : LoginService, public autenticadoService : AutenticadoService, private formBuilder : FormBuilder, private router : Router)
+
+  response?: BaseResponse;
+  constructor(private loginSevice : LoginService, public autenticadoService : AutenticadoService, private formBuilder : FormBuilder, private router : Router
+    , private snackBar : MatSnackBar)
   {
     if(autenticadoService.isAutenticado())
     {
@@ -35,14 +41,22 @@ export class LoginComponent {
     let login = this.loginForm.value;
     this.loginSevice.login(login).subscribe({
       next : data => {
-        if(data.codRespuesta == '0') //Exito
-        {
-          this.autenticadoService.autenticado = true;
-          this.router.navigate(["/"]);
-        }
-        else{
-          console.log("Incorrecto");
-        }
+        console.log(data);
+        
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("autenticado", "Si");
+        this.autenticadoService.autenticado = true;
+        this.router.navigate(["/intranet"]);
+      },
+      error : error =>{
+        console.error(error);
+        this.response = error.error;
+        this.snackBar.openFromTemplate(this.notificacion, {
+          duration: 3 * 1000,
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+          panelClass: 'fondo-notificacion-error'
+        });
       }
     })
   }

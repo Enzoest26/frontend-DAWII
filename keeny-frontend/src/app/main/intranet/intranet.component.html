@@ -15,7 +15,7 @@
         </div>
         <app-sidebar></app-sidebar>
         <div [class.cont-btn-final-escondido]="!opened" [class.cont-btn-final]="opened">
-            <a mat-flat-button [class.btn-logout-escondido]="!opened" [class.btn-logout]="opened">
+            <a mat-flat-button [class.btn-logout-escondido]="!opened" [class.btn-logout]="opened" (click)="cerrarSesion()">
                 <mat-icon style="font-size: 40px; margin-left: 10px;">logout</mat-icon>
                 {{opened ? 'Cerrar Sesión' : ''}}
             </a>

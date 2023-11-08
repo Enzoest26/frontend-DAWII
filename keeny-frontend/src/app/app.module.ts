@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { UsuarioComponent } from './component/mantenimiento/usuario/usuario.component';
-import { HttpClientModule} from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { SidebarComponent } from './main/sidebar/sidebar/sidebar.component';
 import { FooterComponent } from './main/footer/footer/footer.component';
 import { NavbarComponent } from './main/navbar/navbar/navbar.component'
@@ -34,6 +34,7 @@ import { InicioPrincipalComponent } from './component/inicio-principal/inicio-pr
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
 import { ComidaComponent } from './component/mantenimiento/comida/comida.component';
+import { AuthInterceptorInterceptor } from './config/auth-interceptor.interceptor';
 //import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -76,7 +77,7 @@ import { ComidaComponent } from './component/mantenimiento/comida/comida.compone
     //NoopAnimationsModule
   ],
   exports:[],
-  providers: [MatSidenavModule],
+  providers: [MatSidenavModule, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

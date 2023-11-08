@@ -9,13 +9,14 @@ import { NavbarComponent } from './main/navbar/navbar/navbar.component';
 import { InicioPrincipalComponent } from './component/inicio-principal/inicio-principal.component';
 import { LoginComponent } from './component/login/login.component';
 import { ComidaComponent } from './component/mantenimiento/comida/comida.component';
+import { AuthGrard } from './config/auth-grard';
 
 const routes : Routes = [
   {path: '', component: NavbarComponent, children: [
     {path: '', component: InicioPrincipalComponent},
     {path: 'login', component: LoginComponent}
   ]},
-  {path: 'intranet', component: IntranetComponent, children: [
+  {path: 'intranet', component: IntranetComponent, canActivate: [AuthGrard] ,children: [
     {path: '', component: InicioComponent},
     {path: 'inicio', component: InicioComponent},
     {path: 'mantenimiento-usuario', component: UsuarioComponent},

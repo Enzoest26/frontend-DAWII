@@ -9,7 +9,7 @@ import { BASE_URL } from 'src/app/util/constantes';
 })
 export class TipousuarioService {
 
-  private url = BASE_URL + "/tipo-usuario/buscarTodos";
+  private url = BASE_URL + "/intranet/tipo-usuario/buscarTodos";
   constructor(private http : HttpClient) { }
 
   obtenerTiposUsuarios() : Observable<TipoUsuario[]>

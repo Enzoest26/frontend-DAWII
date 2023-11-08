@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { TokenRol } from 'src/app/modal/token-rol';
 
 @Injectable({
   providedIn: 'root'
@@ -6,6 +7,8 @@ import { Injectable } from '@angular/core';
 export class AutenticadoService {
 
   public autenticado : Boolean = false;
+
+  public tokenRol?: TokenRol;
   constructor() { }
 
   isAutenticado()

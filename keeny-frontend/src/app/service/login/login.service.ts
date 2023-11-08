@@ -10,12 +10,12 @@ import { BASE_URL } from 'src/app/util/constantes';
 })
 export class LoginService {
 
-  urlLogin = BASE_URL + "/login";
+  urlLogin = BASE_URL + "/auth/login";
 
   constructor(private http: HttpClient) { }
 
-  login(login: Login) : Observable<BaseResponse>
+  login(login: Login) : Observable<any>
   {
-    return this.http.post<BaseResponse>(`${this.urlLogin}`, login)
+    return this.http.post<any>(`${this.urlLogin}`, login)
   }
 }

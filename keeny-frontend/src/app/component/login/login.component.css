@@ -34,3 +34,7 @@ button{
     width: 18rem;
     height: 3rem !important;
 }
+.fondo-notificacion-error{
+    background-color: #C2272F !important;
+    color: white;
+}
