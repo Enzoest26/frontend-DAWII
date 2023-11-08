@@ -10,11 +10,11 @@ import { Comida } from 'src/app/modal/comida';
 })
 export class ComidaService {
 
-  private urlListarComidas = BASE_URL + "/comida/listar";
-  private urlRegistrarComida = BASE_URL + "/comida/registrar";
-  private urlActualizarComida = BASE_URL + "/comida/actualizar";
-  private urlEliminarComida = BASE_URL + "/comida/eliminar";
-  private urlBuscarPorIdComida = BASE_URL + "/comida/buscarPorId";
+  private urlListarComidas = BASE_URL + "/intranet/comida/listar";
+  private urlRegistrarComida = BASE_URL + "/intranet/comida/registrar";
+  private urlActualizarComida = BASE_URL + "/intranet/comida/actualizar";
+  private urlEliminarComida = BASE_URL + "/intranet/comida/eliminar";
+  private urlBuscarPorIdComida = BASE_URL + "/intranet/comida/buscarPorId";
 
   constructor(private http : HttpClient) { }
 
