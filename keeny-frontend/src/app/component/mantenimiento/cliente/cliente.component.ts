@@ -52,7 +52,7 @@ constructor(private clienteService: ClienteService, private formBuilder : FormBu
           {
             nombre_cliente: ['', [Validators.required, Validators.minLength(2), Validators.pattern(PATTERN_ALFABETICO_ESPACIO)]],
             apellidos_cliente: ['', [Validators.required, Validators.pattern(PATTERN_ALFABETICO_ESPACIO)]],
-            dni_cliente: ['', Validators.required, Validators.maxLength(8)],
+            dni_cliente: ['', [Validators.required, Validators.maxLength(8)]],
             fec_nac_cliente: ['', Validators.required],
             telefono_cliente: ['', [Validators.required, Validators.maxLength(9),Validators.pattern(PATTERN_NUMERICO)]],
             edad_cliente: ['', [Validators.required, Validators.max(100)]],
@@ -166,6 +166,7 @@ ngAfterViewInit(): void {
     let clienteMostrar;
     this.clienteService.obtenerClientesPorId(cliente!.id_cliente.toString()).subscribe(data => {
       clienteMostrar = data;
+      console.log(clienteMostrar);
       if(clienteMostrar){
         this.clienteForm.patchValue({
           nombre_cliente: clienteMostrar.nombre_cliente,

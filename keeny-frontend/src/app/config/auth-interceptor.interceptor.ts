@@ -24,6 +24,7 @@ export class AuthInterceptorInterceptor implements HttpInterceptor {
       if(token)
       {
         console.log("Exite el token");
+        console.log(token);
         request = request.clone({
           setHeaders: {Authorization : `Bearer ${token}`}
         });

@@ -36,6 +36,8 @@ import {MatMenuModule} from '@angular/material/menu';
 import { ComidaComponent } from './component/mantenimiento/comida/comida.component';
 import { AuthInterceptorInterceptor } from './config/auth-interceptor.interceptor';
 //import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+
 
 @NgModule({
   declarations: [
@@ -73,7 +75,8 @@ import { AuthInterceptorInterceptor } from './config/auth-interceptor.intercepto
     MatListModule,
     MatPaginatorModule,
     MatToolbarModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDatepickerModule
     //NoopAnimationsModule
   ],
   exports:[],
