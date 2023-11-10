@@ -18,7 +18,7 @@
     </mat-expansion-panel-header>
     <mat-nav-list>
         <a mat-list-item #tooltip="matTooltip"
-            matTooltip="Bebida" [matTooltipPosition]="estatusSidebar() ? 'below' : 'right'">
+            matTooltip="Bebida" [routerLink]="['/intranet/mantenimiento-bebida']" [matTooltipPosition]="estatusSidebar() ? 'below' : 'right'">
             <mat-icon [class.list-icon]="estatusSidebar()" [class.list-icon-escondido]="!estatusSidebar()">coffee</mat-icon>
             <span *ngIf="estatusSidebar()">Bebida</span>
         </a>

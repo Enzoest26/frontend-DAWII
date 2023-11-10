@@ -37,6 +37,7 @@ import { ComidaComponent } from './component/mantenimiento/comida/comida.compone
 import { AuthInterceptorInterceptor } from './config/auth-interceptor.interceptor';
 //import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { BebidaComponent } from './component/mantenimiento/bebida/bebida.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     ClienteComponent,
     LoginComponent,
     InicioPrincipalComponent,
-    ComidaComponent
+    ComidaComponent,
+    BebidaComponent
   ],
   imports: [
     BrowserModule,
