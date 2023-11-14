@@ -38,7 +38,7 @@ import { AuthInterceptorInterceptor } from './config/auth-interceptor.intercepto
 //import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { BebidaComponent } from './component/mantenimiento/bebida/bebida.component';
-
+import { VentaComponent } from './component/reporte/venta/venta.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +53,8 @@ import { BebidaComponent } from './component/mantenimiento/bebida/bebida.compone
     LoginComponent,
     InicioPrincipalComponent,
     ComidaComponent,
-    BebidaComponent
+    BebidaComponent,
+    VentaComponent
   ],
   imports: [
     BrowserModule,

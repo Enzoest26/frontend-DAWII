@@ -45,7 +45,7 @@
         <span *ngIf="estatusSidebar()" style="margin-left: 1rem;">Reporte</span> 
     </mat-expansion-panel-header>
     <mat-nav-list>
-        <a mat-list-item routerLink="#" #tooltip="matTooltip" 
+        <a mat-list-item [routerLink]="['/intranet/reporte-venta']" #tooltip="matTooltip" 
             matTooltip="Ventas" [matTooltipPosition]="estatusSidebar() ? 'below' : 'right'">
             <mat-icon [class.list-icon]="estatusSidebar()" [class.list-icon-escondido]="!estatusSidebar()" >sell</mat-icon>
             <span *ngIf="estatusSidebar()">Ventas</span>

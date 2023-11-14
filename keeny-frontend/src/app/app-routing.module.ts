@@ -11,6 +11,7 @@ import { LoginComponent } from './component/login/login.component';
 import { ComidaComponent } from './component/mantenimiento/comida/comida.component';
 import { AuthGrard } from './config/auth-grard';
 import { BebidaComponent } from './component/mantenimiento/bebida/bebida.component';
+import { VentaComponent } from './component/reporte/venta/venta.component';
 
 const routes : Routes = [
   {path: '', component: NavbarComponent, children: [
@@ -23,7 +24,8 @@ const routes : Routes = [
     {path: 'mantenimiento-usuario', component: UsuarioComponent},
     {path: 'mantenimiento-cliente', component: ClienteComponent},
     {path: 'mantenimiento-comida', component: ComidaComponent},
-    {path: 'mantenimiento-bebida', component: BebidaComponent}
+    {path: 'mantenimiento-bebida', component: BebidaComponent},
+    {path: 'reporte-venta', component: VentaComponent}
   ]}
 ];
 
