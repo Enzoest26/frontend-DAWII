@@ -12,11 +12,15 @@ import { ComidaComponent } from './component/mantenimiento/comida/comida.compone
 import { AuthGrard } from './config/auth-grard';
 import { BebidaComponent } from './component/mantenimiento/bebida/bebida.component';
 import { VentaComponent } from './component/reporte/venta/venta.component';
+import { CatalogoComponent } from './component/catalogo/catalogo.component';
+import { VerComidaComponent } from './component/ver-comida/ver-comida.component';
 
 const routes : Routes = [
   {path: '', component: NavbarComponent, children: [
     {path: '', component: InicioPrincipalComponent},
-    {path: 'login', component: LoginComponent}
+    {path: 'login', component: LoginComponent},
+    {path: 'catalogo', component: CatalogoComponent},
+    {path: 'ver-comida/:id', component: VerComidaComponent}
   ]},
   {path: 'intranet', component: IntranetComponent, canActivate: [AuthGrard] ,children: [
     {path: '', component: InicioComponent},

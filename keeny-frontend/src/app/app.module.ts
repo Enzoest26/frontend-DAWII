@@ -39,6 +39,10 @@ import { AuthInterceptorInterceptor } from './config/auth-interceptor.intercepto
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { BebidaComponent } from './component/mantenimiento/bebida/bebida.component';
 import { VentaComponent } from './component/reporte/venta/venta.component';
+import { CatalogoComponent } from './component/catalogo/catalogo.component';
+import {MatCardModule} from '@angular/material/card';
+import { VerComidaComponent } from './component/ver-comida/ver-comida.component';
+
 
 @NgModule({
   declarations: [
@@ -54,7 +58,9 @@ import { VentaComponent } from './component/reporte/venta/venta.component';
     InicioPrincipalComponent,
     ComidaComponent,
     BebidaComponent,
-    VentaComponent
+    VentaComponent,
+    CatalogoComponent,
+    VerComidaComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +85,8 @@ import { VentaComponent } from './component/reporte/venta/venta.component';
     MatPaginatorModule,
     MatToolbarModule,
     MatMenuModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatCardModule
     //NoopAnimationsModule
   ],
   exports:[],
