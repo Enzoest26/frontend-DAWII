@@ -4,23 +4,26 @@
             <h4 style="margin: 20px;">REPORTE DE VENTAS</h4>
         </div>
         <div class="card-body">
-            <div class="container-fluid"> <!--[@estadoFiltro]=stateFiltro-->
+            <div class="container-fluid" ><!--[@estadoFiltro]=stateFiltro-->
                 <div class="d-flex" style="margin-top: 8px; margin-bottom: 8px;">
+
                     <div class="input-group">
                         <label class="label" for="fecha"><b>Rango de Fechas:</b></label>
-                        <input type="text" id="fecha" class="form-control me-2" placeholder="Fecha" style="max-width: 300px;">
+                        <input type="text" id="fecha" class="form-control me-2"
+                        placeholder="Fecha" style="max-width: 300px;" /><!--formControlName="fecha"-->
                     </div>
                 
                     <div class="input-group">
                         <label class="label" for="producto"><b>Producto:</b></label>
-                        <input type="text" id="producto" class="form-control me-3" placeholder="ID Producto" style="max-width: 300px;">
+                        <input type="text" id="producto" class="form-control me-3"
+                        placeholder="ID Producto" style="max-width: 300px;" /><!--formControlName="productoId"-->
                         <button class="btn btn-danger" (click)="onFiltrar()">&times;</button>
-                    </div>                
+                    </div>    
                 </div>
                 <div class="boton-container">    
                     <button class="boton" style="background-color: darkturquoise;">Consultar</button>
                     <button class="boton" style="background-color: rgb(245, 58, 95);">Gráfico</button>
-                    <button class="boton" style="background-color: rgb(0, 255, 76);">Exportar</button>
+                    <button class="boton" style="background-color: rgb(0, 255, 76);" (click)="onImprimir()">Exportar</button>
                 </div>
             </div>
             <div class="table-responsive">
@@ -34,36 +37,7 @@
                             <th scope="col">Total</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>001</td>
-                            <td>2023-11-16</td>
-                            <td>Cliente 1</td>
-                            <td>Usuario 1</td>
-                            <td>S/.15.20</td>
-                        </tr>
-                        <tr>
-                            <td>002</td>
-                            <td>2023-08-29</td>
-                            <td>Cliente 2</td>
-                            <td>Usuario 2</td>
-                            <td>S/. 27.50</td>
-                        </tr>
-                        <tr>
-                            <td>003</td>
-                            <td>2023-10-14</td>
-                            <td>Cliente 3</td>
-                            <td>Usuario 2</td>
-                            <td>S/.25.00</td>
-                        </tr>
-                        <tr>
-                            <td>004</td>
-                            <td>2023-10-22</td>
-                            <td>Cliente 4</td>
-                            <td>Usuario 1</td>
-                            <td>S/. 12.00</td>
-                        </tr>
-                    </tbody>
+
                 </table> 
             </div>
         </div>
