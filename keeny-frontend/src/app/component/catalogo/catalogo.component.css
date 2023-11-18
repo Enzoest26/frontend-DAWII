@@ -32,3 +32,11 @@ img{
     background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
     background-size: cover;
 }
+.paginacion{
+    display: flex;
+    justify-content: center;
+
+}
+.paginacion button{
+    margin: 0 0.3rem 1rem 0.3rem;
+}

@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { UsuarioComponent } from './component/mantenimiento/usuario/usuario.component';
 import { RouterModule, Routes } from '@angular/router';
 import { IntranetComponent } from './main/intranet/intranet.component';
@@ -15,6 +14,7 @@ import { VentaComponent } from './component/reporte/venta/venta.component';
 import { CatalogoComponent } from './component/catalogo/catalogo.component';
 import { VerComidaComponent } from './component/ver-comida/ver-comida.component';
 import { CatalogoBebidaComponent } from './component/catalogo-bebida/catalogo-bebida.component';
+import { VerBebidaComponent } from './component/ver-bebida/ver-bebida.component';
 
 const routes : Routes = [
   {path: '', component: NavbarComponent, children: [
@@ -22,7 +22,8 @@ const routes : Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'catalogo-comidas', component: CatalogoComponent},
     {path: 'catalogo-bebida', component: CatalogoBebidaComponent},
-    {path: 'ver-comida/:id', component: VerComidaComponent}
+    {path: 'ver-comida/:id', component: VerComidaComponent},
+    {path: 'ver-bebida/:id', component: VerBebidaComponent}
   ]},
   {path: 'intranet', component: IntranetComponent, canActivate: [AuthGrard] ,children: [
     {path: '', component: InicioComponent},

@@ -28,7 +28,48 @@ export class CatalogoBebidaComponent implements OnInit{
   }
 
   redireccionarPagina(idBebida: string){
+    this.router.navigate(['ver-bebida', idBebida])
+  }
+
+  clickSiguiente(){
+    this.bebidasData = [];
+    this.paginaActual += 1;
+    this.bebidaService.obtenerPublicoBebidasActivo(this.paginaActual).subscribe(data => {
+      this.bebidasData = data.content;
+      this.paginaFinal = data.totalPages;
+    });
+  }
+
+  clickAnterior(){
+    this.bebidasData = [];
+    if(this.paginaActual == 1){
+      return;
+    }
+    this.paginaActual -= 1;
     
+    this.bebidaService.obtenerPublicoBebidasActivo(this.paginaActual).subscribe(data => {
+      this.bebidasData = data.content;
+      this.paginaFinal = data.totalPages;
+    });
+  }
+
+  clickIrInicio(){
+    this.bebidasData = [];
+    this.paginaActual = 1;
+    this.bebidaService.obtenerPublicoBebidasActivo(this.paginaActual).subscribe(data => {
+      this.bebidasData = data.content;
+      this.paginaFinal = data.totalPages;
+    });
+    
+  }
+
+  clickIrFinal(){
+    this.bebidasData = [];
+    this.paginaActual = this.paginaFinal;
+    this.bebidaService.obtenerPublicoBebidasActivo(this.paginaActual).subscribe(data => {
+      this.bebidasData = data.content;
+      this.paginaFinal = data.totalPages;
+    });
   }
 
 }

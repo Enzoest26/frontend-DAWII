@@ -20,7 +20,7 @@ export class BebidaService {
 
   //publico
   private urlPublicoBuscarActivosPaginado = BASE_URL + "/publico/bebida/activos";
-
+  private urlPublicoBuscarPorId = BASE_URL + "/publico/bebid";
 
   constructor(private http : HttpClient) { }
 
@@ -50,5 +50,7 @@ export class BebidaService {
   obtenerPublicoBebidasActivo(pagina: number): Observable<BebidaCatalogo> {
     return this.http.get<BebidaCatalogo>(`${this.urlPublicoBuscarActivosPaginado}?pagina=${pagina}`);
   }
-  
+  obtenerPublicoBebidasPorId(id: string): Observable<Bebida> {
+    return this.http.get<Bebida>(`${this.urlPublicoBuscarPorId}/${id}`);
+  }
 }

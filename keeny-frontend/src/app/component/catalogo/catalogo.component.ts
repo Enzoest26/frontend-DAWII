@@ -31,5 +31,45 @@ export class CatalogoComponent implements OnInit{
     this.router.navigate(['ver-comida', idComida]);
   }
 
+  clickSiguiente(){
+    this.dataDtoComidas = [];
+    this.paginaActual += 1;
+    this.comidaService.listarComidasActivosPublico(this.paginaActual).subscribe(data => {
+      this.dataDtoComidas = data.content;
+      this.paginaFinal = data.totalPaginas;
+    });
+  }
+
+  clickAnterior(){
+    this.dataDtoComidas = [];
+    if(this.paginaActual == 1){
+      return;
+    }
+    this.paginaActual -= 1;
+    
+    this.comidaService.listarComidasActivosPublico(this.paginaActual).subscribe(data => {
+      this.dataDtoComidas = data.content;
+      this.paginaFinal = data.totalPaginas;
+    });
+  }
+
+  clickIrInicio(){
+    this.dataDtoComidas = [];
+    this.paginaActual = 1;
+    this.comidaService.listarComidasActivosPublico(this.paginaActual).subscribe(data => {
+      this.dataDtoComidas = data.content;
+      this.paginaFinal = data.totalPaginas;
+    });
+    
+  }
+
+  clickIrFinal(){
+    this.dataDtoComidas = [];
+    this.paginaActual = this.paginaFinal;
+    this.comidaService.listarComidasActivosPublico(this.paginaActual).subscribe(data => {
+      this.dataDtoComidas = data.content;
+      this.paginaFinal = data.totalPaginas;
+    });
+  }
 
 }

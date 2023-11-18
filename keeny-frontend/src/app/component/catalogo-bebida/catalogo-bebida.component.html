@@ -1,3 +1,4 @@
+<h2 class="text-center" style="margin-top: 2rem;">Catalogo de Bebidas</h2>
 <div class="catalogo-container">
     <div class="mat-card-row">
         <mat-card class="example-card col-md-4" *ngFor="let bebida of bebidasData">
@@ -15,4 +16,22 @@
           </mat-card-actions>
         </mat-card>
       </div>
+</div>
+
+<div class="paginacion">
+  <button mat-stroked-button (click)="clickIrInicio()" *ngIf="paginaActual != 1">
+    Ir Inicio
+  </button>
+  <button mat-stroked-button (click)="clickAnterior()" *ngIf="paginaActual != 1">
+  Anterior
+  </button>
+  <button mat-stroked-button>
+      {{paginaActual}}
+  </button>
+  <button mat-stroked-button (click)="clickSiguiente()" *ngIf="paginaFinal != paginaActual">
+  Siguiente
+  </button>
+  <button mat-stroked-button (click)="clickIrFinal()" *ngIf="paginaFinal != paginaActual">
+    Ir Final
+  </button>
 </div>

@@ -10,8 +10,8 @@ export interface Bebida {
     estado: number;
     categoria: CategoriaBebida;
     idCategoria: number;
-    tipo: TipoBebida;
+    tipoBebida: TipoBebida;
     idTipo: number;
-    tamano: TamanoBebida;
+    tamanioBebida: TamanoBebida;
     idTamano: number
 }
