@@ -1,0 +1,18 @@
+<div class="catalogo-container">
+    <div class="mat-card-row">
+        <mat-card class="example-card col-md-4" *ngFor="let bebida of bebidasData">
+          <img mat-card-image src="../../../assets/imgs/presentacion-final-de-la-tarta-de-chocolate.jpg" alt="Imagen no encontrada">
+          <mat-card-content >
+            <p class="text-center">{{bebida.descripcionBebida}}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <div class="button-container">
+                <button mat-mini-fab color="primary" (click)="redireccionarPagina(bebida.idBebida)" aria-label="Example icon button with a menu icon">
+                    <mat-icon>visibility</mat-icon>
+                </button>
+            </div>
+            <h4>S/ {{bebida.precioBebida}}</h4>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+</div>

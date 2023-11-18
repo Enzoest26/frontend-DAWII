@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { BASE_URL } from 'src/app/util/constantes';
 import { Bebida } from 'src/app/modal/bebida';
 import { BaseResponse } from 'src/app/modal/base-response';
+import { BebidaCatalogo } from 'src/app/modal/bebida-catologo';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,11 @@ export class BebidaService {
   private urlRegistrarBebida = BASE_URL + "/intranet/bebida/registrar";
   private urlActualizarBebida= BASE_URL + "/intranet/bebida/actualizar?idBebida";
   private urlEliminarBebida = BASE_URL + "/intranet/bebida/eliminar";
-  private urlBuscarPorIdBebida = BASE_URL + "/intranet/bebida/buscarPorId"
+  private urlBuscarPorIdBebida = BASE_URL + "/intranet/bebida/buscarPorId";
+
+  //publico
+  private urlPublicoBuscarActivosPaginado = BASE_URL + "/publico/bebida/activos";
+
 
   constructor(private http : HttpClient) { }
 
@@ -41,6 +46,9 @@ export class BebidaService {
 
   obtenerBebidasPorId(id: string): Observable<any> {
     return this.http.get<any>(`${this.urlBuscarPorIdBebida}/${id}`);
+  }
+  obtenerPublicoBebidasActivo(pagina: number): Observable<BebidaCatalogo> {
+    return this.http.get<BebidaCatalogo>(`${this.urlPublicoBuscarActivosPaginado}?pagina=${pagina}`);
   }
   
 }

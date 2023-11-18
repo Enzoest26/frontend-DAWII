@@ -4,8 +4,8 @@ import { TipoBebida } from "./tipo-bebida";
 
 export interface Bebida {
     idBebida: string;
-    descripcion: string;
-    precio: number;
+    descripcionBebida: string;
+    precioBebida: number;
     stock: number;
     estado: number;
     categoria: CategoriaBebida;

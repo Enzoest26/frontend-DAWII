@@ -14,12 +14,14 @@ import { BebidaComponent } from './component/mantenimiento/bebida/bebida.compone
 import { VentaComponent } from './component/reporte/venta/venta.component';
 import { CatalogoComponent } from './component/catalogo/catalogo.component';
 import { VerComidaComponent } from './component/ver-comida/ver-comida.component';
+import { CatalogoBebidaComponent } from './component/catalogo-bebida/catalogo-bebida.component';
 
 const routes : Routes = [
   {path: '', component: NavbarComponent, children: [
     {path: '', component: InicioPrincipalComponent},
     {path: 'login', component: LoginComponent},
-    {path: 'catalogo', component: CatalogoComponent},
+    {path: 'catalogo-comidas', component: CatalogoComponent},
+    {path: 'catalogo-bebida', component: CatalogoBebidaComponent},
     {path: 'ver-comida/:id', component: VerComidaComponent}
   ]},
   {path: 'intranet', component: IntranetComponent, canActivate: [AuthGrard] ,children: [
