@@ -20,7 +20,7 @@ export class BebidaService {
 
   //publico
   private urlPublicoBuscarActivosPaginado = BASE_URL + "/publico/bebida/activos";
-  private urlPublicoBuscarPorId = BASE_URL + "/publico/bebid";
+  private urlPublicoBuscarPorId = BASE_URL + "/publico/bebida";
 
   constructor(private http : HttpClient) { }
 

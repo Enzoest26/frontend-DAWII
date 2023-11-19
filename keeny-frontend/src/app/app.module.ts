@@ -44,6 +44,7 @@ import {MatCardModule} from '@angular/material/card';
 import { VerComidaComponent } from './component/ver-comida/ver-comida.component';
 import { CatalogoBebidaComponent } from './component/catalogo-bebida/catalogo-bebida.component';
 import { VerBebidaComponent } from './component/ver-bebida/ver-bebida.component';
+import { CarritoComprasComponent } from './component/carrito-compras/carrito-compras.component';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { VerBebidaComponent } from './component/ver-bebida/ver-bebida.component'
     CatalogoComponent,
     VerComidaComponent,
     CatalogoBebidaComponent,
-    VerBebidaComponent
+    VerBebidaComponent,
+    CarritoComprasComponent
   ],
   imports: [
     BrowserModule,

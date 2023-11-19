@@ -1,0 +1,64 @@
+<!-- Page Content -->
+<div class="container">
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3">
+        Carrito de Compras
+    </h1>
+
+    <!-- Blog Post -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-9" *ngIf="dataCarrito.data.length != 0">
+                    <table mat-table [dataSource]="dataCarrito"  class="mat-elevation-z3 demo-table" style="border: 1px #c2c2c2 solid;">
+                        <ng-container matColumnDef="idProducto">
+                          <th mat-header-cell *matHeaderCellDef> ID Producto </th>
+                          <td mat-cell *matCellDef="let carrito"> {{carrito.idProducto}} </td>
+                        </ng-container>
+                      
+                        <ng-container matColumnDef="descripcion">
+                          <th mat-header-cell *matHeaderCellDef>Descripción </th>
+                          <td mat-cell *matCellDef="let carrito"> {{carrito.descripcion}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="cantidad">
+                          <th mat-header-cell *matHeaderCellDef>Cantidad</th>
+                          <td mat-cell *matCellDef="let carrito"> {{carrito.cantidad}} </td>
+                        </ng-container>
+                      
+                        <ng-container matColumnDef="precio">
+                          <th mat-header-cell *matHeaderCellDef >Precio</th>
+                          <td mat-cell *matCellDef="let carrito">S/{{carrito.precio * carrito.cantidad}} </td>
+                        </ng-container>
+                      
+                        <ng-container matColumnDef="accion">
+                          <th mat-header-cell *matHeaderCellDef> </th>
+                          <td mat-cell *matCellDef="let carrito">
+                            <button mat-icon-button class="color-rojo btn-accion" (click)="eliminarProducto(carrito.idProducto)">
+                              <mat-icon>delete</mat-icon>
+                            </button>
+                          </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="headerColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: headerColumns;"></tr>
+                        
+                      </table>
+                    
+                        <mat-paginator #matPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+                        </mat-paginator>
+                </div>
+                <div class="col-lg-9" *ngIf="dataCarrito.data.length == 0">
+                    <h3>No hay productos escogidos</h3>
+                </div>
+
+                <div class="col-lg-3">
+                    <h2 class="card-title">TOTAL A PAGAR</h2>
+                    
+                    <ul class="list-group">
+                        <li class="list-group-item"><h2 style="font-weight: bold;">S/ {{calcularTotalPagar()}}</h2></li>
+                        <a routerLink="/verifica-cuadro" class="btn btn-dark" *ngIf="dataCarrito.data.length != 0">Ver Orden</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>

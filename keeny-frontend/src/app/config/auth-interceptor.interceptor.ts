@@ -44,6 +44,12 @@ export class AuthInterceptorInterceptor implements HttpInterceptor {
             horizontalPosition: 'right',
             verticalPosition: 'top'
           });
+        }else if(error.status === 0){
+          this.snackBar.open("No hubo comunicación con el servidor. Contacte con su administrador.", "", {
+            duration: 1000 * 6,
+            horizontalPosition: 'right',
+            verticalPosition: 'top'
+          });
         }
       }
     }));
