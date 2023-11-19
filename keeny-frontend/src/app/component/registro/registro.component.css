@@ -1,0 +1,193 @@
+@import url('https://fonts.cdnfonts.com/css/euclid-circular-a');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&family=Roboto:wght@100;300;400;500;700&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Euclid Circular A';
+}
+body {
+    width: 100%;
+    height: 100vh;
+	background-color: #dd9d14;
+    background-image: url("https://www.transparenttextures.com/patterns/food.png");
+}
+form{
+    position: absolute;
+    min-width: 600px;
+    max-width: 40%;
+    width: 25%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 35px;
+    box-shadow: -20px 60px 40px -30px rgba(0, 0, 0, 0.18);
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+h1{
+    position: relative;
+    font-size: 23px;
+    padding-bottom: 7px;
+    text-align: left;
+  	margin-bottom: 20px;
+  	color: #05050F;
+  	font-weight: bolder;
+}
+h1::after{
+    content: "";
+    position: absolute;
+    height: 3px;
+    border-radius: 2px;
+    background-color: #dd9d14;
+    width: 100%;
+    left: 0;
+    bottom: -3px;    
+}
+
+input{
+    border: none;
+    margin: 10px 10px;
+    border-bottom: 1px solid #D0A616;
+    padding: 7px 9px;
+    overflow: hidden;
+    background: transparent;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.acuerdo{
+    text-align: center;
+    color: #818181;
+    font-size: 0.85rem;
+    font-weight: 300;
+}
+
+button{
+    display: inline-block;
+    width: 100%;
+    height: 43px;
+    background-color: #dd9d14;
+    color: white;
+    border: none;
+    border-radius: 0.7rem;
+    box-shadow: 0px 15px 30px -10px rgba(210, 140, 34, 0.18);
+    cursor: pointer;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+button:hover{
+    background-color: #151111;
+}
+
+.text{
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bolder;
+    color: #818181;
+    font-size: 0.85rem;
+    font-weight: 300;
+}
+
+.text a{
+    font-weight: 600;
+    text-decoration: none;
+    color: #dd9d14;
+    transition: 0.3s;
+}
+.text a:hover{
+    color: #151111;
+}
+
+.sugerencias{
+    width: 85%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #818181;
+    font-size: 0.85rem;
+    font-weight: 300;
+}
+
+.remember{
+    align-items: center;
+    justify-content: center;
+    margin-left: 70px;
+}
+
+/*asdasd*/
+.input-field{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: none;
+    border-radius: 0.625rem;
+    border: 1px solid #D1D1D1;
+    padding: 0;
+    outline: none;
+    font-size: .9rem;
+    color: #151111;
+    transition: 0.4s;
+    padding: 0 15px;
+}
+
+.input-field2{
+    position: relative;
+    margin-right: 20px;
+}
+.input-field2 input{
+    width: 100%;
+    height: 45px;
+    border-radius: 0.625rem;
+    font-size: .9rem;
+    padding: 0 15px;
+    border: 1px solid #D1D1D1;
+    background: transparent;
+    color: #151111;
+    outline-color: #ffcf66;
+    transition: 0.4s;
+}
+
+.input-field2 .lbl{
+    position: absolute;
+    top: 50%;
+    left: 30px;
+    transform: translateY(-50%);
+    color: #818181;
+    font-size: .9rem;
+    pointer-events: none;
+}
+
+input:focus ~ .lbl{
+    top: 0;
+    left: 15px;
+    font-size: .7rem;
+    padding: 0 2px;
+    background: #ffffff;
+}
+
+input:focus ~ .lbl,
+input:valid ~ .lbl {
+	background-color: #ffffff;
+	left: 15px;
+	padding: 0 2px;
+	top: 0;
+    font-size: .7rem;
+    color: #dd9d14;
+}
+
+
+label{
+    position: absolute;
+    left: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.9rem;
+    color: #818181;
+    pointer-events: none;
+    transition: 0.3s;
+}

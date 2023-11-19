@@ -15,15 +15,22 @@ import { CatalogoComponent } from './component/catalogo/catalogo.component';
 import { VerComidaComponent } from './component/ver-comida/ver-comida.component';
 import { CatalogoBebidaComponent } from './component/catalogo-bebida/catalogo-bebida.component';
 import { VerBebidaComponent } from './component/ver-bebida/ver-bebida.component';
+<<<<<<< HEAD
+import { RegistroComponent } from './component/registro/registro.component';
+=======
+import { CarritoComprasComponent } from './component/carrito-compras/carrito-compras.component';
+>>>>>>> b56d73b6d9196e62bfb984a2126409377de162e4
 
 const routes : Routes = [
   {path: '', component: NavbarComponent, children: [
     {path: '', component: InicioPrincipalComponent},
     {path: 'login', component: LoginComponent},
+    {path: 'registro', component: RegistroComponent},
     {path: 'catalogo-comidas', component: CatalogoComponent},
     {path: 'catalogo-bebida', component: CatalogoBebidaComponent},
     {path: 'ver-comida/:id', component: VerComidaComponent},
-    {path: 'ver-bebida/:id', component: VerBebidaComponent}
+    {path: 'ver-bebida/:id', component: VerBebidaComponent},
+    {path: 'carrito-compras', component: CarritoComprasComponent}
   ]},
   {path: 'intranet', component: IntranetComponent, canActivate: [AuthGrard] ,children: [
     {path: '', component: InicioComponent},

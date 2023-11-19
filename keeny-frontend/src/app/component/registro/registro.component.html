@@ -1,0 +1,58 @@
+
+	<form [formGroup]="clienteForm">
+        <h1>Registro en Sistema </h1>
+
+        <div class="input-field2">
+            <input type="text" required formControlName="nombre_cliente"/>
+            <label class="lbl">Ingresa tu nombre</label>
+        </div>
+        <div class="input-field2">
+            <input type="text" required formControlName="apellidos_cliente"/>
+            <label class="lbl">Ingresa tus apellidos</label>
+        </div>
+        <div class="input-field2">
+            <input type="text" maxlength="8" required formControlName="dni_cliente"/>
+            <label class="lbl">Ingresa tu DNI</label>
+        </div>
+        <div class="input-field2">
+            <input type="date" required formControlName="fec_nac_cliente"/>
+            <label class="lbl"></label>
+        </div>
+        <div class="input-field2">
+            <input type="text" maxlength="9" required formControlName="telefono_cliente"/>
+            <label class="lbl">Ingresa tu teléfono</label>
+        </div>
+        <div class="input-field2">
+            <input type="text" maxlength="3" required formControlName="edad_cliente"/>
+            <label class="lbl">Ingresa tu edad</label>
+        </div>
+        <div class="input-field2">
+            <input type="text" required formControlName="emailCliente"/>
+            <label class="lbl">Ingresa tu correo electrónico</label>
+        </div>
+        <div class="input-field2">
+            <input type="password" required formControlName="clave_cliente"/>
+            <label class="lbl">Ingresa tu contraseña</label>
+        </div>
+        
+        <div class="sugerencias">
+            <div class="remember">
+                <input type="checkbox" checked>
+                <span> Estoy de acuerdo con terminos y condiciones</span>
+            </div>
+        </div>
+
+        <!--
+        <p class="acuerdo">Estoy de acuerdo con terminos y condiciones </p>
+        -->
+        <button (click)="registrarCliente()">Registrarse</button>
+
+        <p class="text"> ¿Ya tienes cuenta? <a routerLink="/login">Ingresa aquí</a></p>
+
+    </form>
+
+    <ng-template #notificacion>
+        <h4>{{tituloNotificacion}}</h4>
+        <p>Te registrase correctamente, ya puedes ingresar a Login</p>
+    </ng-template>
+    
