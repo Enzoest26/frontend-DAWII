@@ -1,0 +1,80 @@
+<!-- Page Content -->
+<div class="container">
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3">
+        Orden de Compra
+    </h1>
+
+
+    <!-- Blog Post -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="row">
+         <div class="col-lg-9">
+           <div class="card-body">
+            <h3 *ngIf="isAuth" class="card-title" style="font-weight: bold;">
+              DATOS ORDEN
+            </h3>
+            <h4 *ngIf="isAuth">Nombre: {{dataCliente.nombre_cliente}} </h4>
+            <h4 *ngIf="isAuth">Email: {{dataCliente.emailCliente}}</h4>
+            <h4 *ngIf="isAuth">DNI: {{dataCliente.dni_cliente}}</h4>
+
+            <h3 class="card-title" style="margin-top: 25px;font-weight: bold;">
+              PRODUCTOS
+            </h3>
+            <div class="alert alert-light" role="alert">
+                <table mat-table [dataSource]="dataCarrito"  class="mat-elevation-z3 demo-table" style="border: 1px #c2c2c2 solid;">
+                    <ng-container matColumnDef="idProducto">
+                      <th mat-header-cell *matHeaderCellDef> ID Producto </th>
+                      <td mat-cell *matCellDef="let carrito"> {{carrito.idProducto}} </td>
+                    </ng-container>
+                  
+                    <ng-container matColumnDef="descripcion">
+                      <th mat-header-cell *matHeaderCellDef>Descripción </th>
+                      <td mat-cell *matCellDef="let carrito"> {{carrito.descripcion}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="cantidad">
+                      <th mat-header-cell *matHeaderCellDef>Cantidad</th>
+                      <td mat-cell *matCellDef="let carrito"> {{carrito.cantidad}} </td>
+                    </ng-container>
+                  
+                    <ng-container matColumnDef="precio">
+                      <th mat-header-cell *matHeaderCellDef >Precio</th>
+                      <td mat-cell *matCellDef="let carrito">S/{{carrito.precio * carrito.cantidad}} </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="headerColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: headerColumns;"></tr>
+                    
+                </table>
+                
+                <mat-paginator #matPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+                </mat-paginator>
+           </div>
+
+         </div>
+       </div>
+
+
+       <div class="col-lg-3">
+        <h2 class="card-title">Resumen Orden</h2>
+
+        <ul class="list-group">
+          <li class="list-group-item"><h4>Pagar: S/ {{calcularTotalPagar()}} </h4></li>
+          <button [disabled]="!isAuth" class="btn btn-dark" (click)="generarOrden()">Generar</button>
+          <p *ngIf="!isAuth">Necesitar estar logueado para realizar la orden. <a routerLink="/login">Loguear</a></p>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+<ng-template #notificacionExito>
+  <h4>Compra Realizada</h4>
+  <p *ngIf="baseResponse.msjRespuesta">{{baseResponse.msjRespuesta}}</p>
+</ng-template>
+
+<ng-template #notificacionError>
+    <h4>Error</h4>
+    <p *ngIf="baseResponse.descripcion">{{baseResponse.descripcion}}</p>
+</ng-template>

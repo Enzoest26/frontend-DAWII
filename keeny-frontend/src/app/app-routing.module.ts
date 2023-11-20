@@ -18,6 +18,7 @@ import { VerBebidaComponent } from './component/ver-bebida/ver-bebida.component'
 
 import { RegistroComponent } from './component/registro/registro.component';
 import { CarritoComprasComponent } from './component/carrito-compras/carrito-compras.component';
+import { GenerarBoletaComponent } from './component/generar-boleta/generar-boleta.component';
 
 const routes : Routes = [
   {path: '', component: NavbarComponent, children: [
@@ -28,7 +29,8 @@ const routes : Routes = [
     {path: 'catalogo-bebida', component: CatalogoBebidaComponent},
     {path: 'ver-comida/:id', component: VerComidaComponent},
     {path: 'ver-bebida/:id', component: VerBebidaComponent},
-    {path: 'carrito-compras', component: CarritoComprasComponent}
+    {path: 'carrito-compras', component: CarritoComprasComponent},
+    {path: 'ver-orden', component : GenerarBoletaComponent}
   ]},
   {path: 'intranet', component: IntranetComponent, canActivate: [AuthGrard] ,children: [
     {path: '', component: InicioComponent},

@@ -47,6 +47,7 @@ import { VerBebidaComponent } from './component/ver-bebida/ver-bebida.component'
 
 import { RegistroComponent } from './component/registro/registro.component';
 import { CarritoComprasComponent } from './component/carrito-compras/carrito-compras.component';
+import { GenerarBoletaComponent } from './component/generar-boleta/generar-boleta.component';
 
 
 
@@ -70,7 +71,8 @@ import { CarritoComprasComponent } from './component/carrito-compras/carrito-com
     CatalogoBebidaComponent,
     VerBebidaComponent,
     RegistroComponent,
-    CarritoComprasComponent
+    CarritoComprasComponent,
+    GenerarBoletaComponent
   ],
   imports: [
     BrowserModule,

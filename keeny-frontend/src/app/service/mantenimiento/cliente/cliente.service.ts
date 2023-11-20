@@ -15,6 +15,8 @@ export class ClienteService {
   private urlActualizarCliente = BASE_URL + "/intranet/cliente/actualizar";
   private urlEliminarCliente = BASE_URL + "/intranet/cliente/eliminar";
   private urlBuscarPorIdCliente = BASE_URL + "/intranet/cliente/buscarPorId";
+  //publico
+  private urlPublicoBuscarPorIdCliente = BASE_URL + "/publico/cliente/buscarPorEmail";
   constructor(private http : HttpClient) { }
 
   obtenerClientes() : Observable<Cliente[]>
@@ -40,6 +42,10 @@ export class ClienteService {
   obtenerClientesPorId(id: string) : Observable<any>
   {
     return this.http.get<any>(`${this.urlBuscarPorIdCliente}/${id}`);
+  }
+  obtenerPublicoClientesPorEmail(email: string) : Observable<any>
+  {
+    return this.http.get<any>(`${this.urlPublicoBuscarPorIdCliente}?email=${email}`);
   }
 
 }

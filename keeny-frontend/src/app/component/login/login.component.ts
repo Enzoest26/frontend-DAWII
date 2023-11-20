@@ -41,11 +41,8 @@ export class LoginComponent {
     let login = this.loginForm.value;
     this.loginSevice.login(login).subscribe({
       next : data => {
-        console.log(data);
-        
         localStorage.setItem("token", data.token);
-        localStorage.setItem("autenticado", "Si");
-        this.autenticadoService.autenticado = true;
+        localStorage.setItem("email", login.idUsuario);
         this.router.navigate(["/intranet"]);
       },
       error : error =>{
