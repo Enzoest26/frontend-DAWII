@@ -218,7 +218,7 @@ export class BebidaComponent implements OnInit, AfterViewInit {
     onClickEliminar(id : any) {
       this.contenidoDialogEliminar = {
         title: TITULO_ELIMINAR,
-        content: "¿Desea eliminar el usuario de ID: " + id + "?",
+        content: "¿Desea eliminar la bebida de ID: " + id + "?",
         id: id
       };
       this.dialog.open(this.dialogEliminar)

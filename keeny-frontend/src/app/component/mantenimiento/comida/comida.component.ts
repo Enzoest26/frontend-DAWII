@@ -7,7 +7,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { BaseResponse } from 'src/app/modal/base-response';
 import { Comida } from 'src/app/modal/comida';
+import { TipoPostre } from 'src/app/modal/tipo-postre';
 import { ComidaService } from 'src/app/service/mantenimiento/comida/comida.service';
+import { TipoPostreService } from 'src/app/service/mantenimiento/tipoPostre/tipo-postre.service';
 import { BOTON_ACTUALIZAR, BOTON_REGISTRAR, PATTERN_ALFABETICO_ESPACIO, PATTERN_NUMERICO, TITULO_ELIMINAR, TITULO_ERROR_NOTIFICACION, TITULO_EXITO_NOTIFICACION } from 'src/app/util/constantes';
 
 @Component({
@@ -22,9 +24,10 @@ export class ComidaComponent implements OnInit, AfterViewInit {
   @ViewChild('matPaginator') paginator!: MatPaginator;
 
   public comidas!: Comida[];
+  public tipoPostres!: TipoPostre[];
 
   headerColumns: string[] = 
-  ['idComida', 'descComida', 'precioComida', 'stockComida', 'tipoComida', 'estadoComida']
+  ['idComida', 'descComida', 'precioComida', 'stockComida', 'tipoComida', 'estadoComida', 'accion']
 
   formModal : any;
 
@@ -44,16 +47,19 @@ export class ComidaComponent implements OnInit, AfterViewInit {
 
   tipoModal? : number; // 0 REGISTRAR, 1 ACTUALIZAR
 
-  idComidaActualizar? : string;
+  tipoComida? : number; // 0 SANDWICH, 1 POSTRE
 
-  constructor(private comidaService : ComidaService, private formBuilder : FormBuilder, 
-    private dialog : MatDialog, private snackBar : MatSnackBar){
+  idComidaActualizar? : number;
+
+  constructor(private comidaService : ComidaService, private tipoPostreService : TipoPostreService,
+    private formBuilder : FormBuilder, private dialog : MatDialog, private snackBar : MatSnackBar){
     this.comidaForm = this.formBuilder.group({
       descComida: ['', [Validators.required, Validators.minLength(4), Validators.pattern(PATTERN_ALFABETICO_ESPACIO)]],
-      precioComida: ['', Validators.required],
-      stockComida: ['', [Validators.required, Validators.pattern(PATTERN_NUMERICO)]],
-      tipoComida: ['', Validators.required],
-      estado: ['', Validators.required]
+      precioComida: ['', [Validators.required, Validators.min(0)]],
+      stockComida: ['', [Validators.required]],
+      tipoComida: ['', [Validators.required]],
+      estadoComida: ['', [Validators.required]],
+      tipoPostre: ['', [Validators.required]]
     });
     
     this.dataComida = new MatTableDataSource<Comida>([]);
@@ -65,9 +71,10 @@ export class ComidaComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.tipoPostreService.obtenerTiposPostres().subscribe(data =>this.tipoPostres = data);
     this.comidaService.listarComidas().subscribe((data) => {
       this.comidas = data;
-      this.dataComida = new MatTableDataSource(this.comidas); // Inicializa dataUsuario aquí
+      this.dataComida = new MatTableDataSource(this.comidas);
       this.dataComida.paginator = this.paginator;
       this.configurarTextoPaginacion(this.paginator);
     });
@@ -91,9 +98,9 @@ export class ComidaComponent implements OnInit, AfterViewInit {
   }
 
   onClickAbrirModal(){
-    this.dialog.open(this.dialogContent, {width: '500px', height: '800px'});
+    this.dialog.open(this.dialogContent, {width: '500px', height: '650px'});
     this.limpiarFormulario();
-    this.tituloBoton = BOTON_REGISTRAR + ' USUARIO';
+    this.tituloBoton = BOTON_REGISTRAR + ' COMIDA';
     this.tipoModal = 0;
   }
 
@@ -105,6 +112,8 @@ export class ComidaComponent implements OnInit, AfterViewInit {
     }
     this.submited = true;
     let comida = this.comidaForm.value;
+    comida.idTipoPostre = comida.tipoPostre;
+    comida.tipoPostre = null;
     comida.estadoComida = Number(comida.estadoComida);
     this.comidaService.registrarComida(comida).subscribe({
       next: data => {
@@ -121,6 +130,14 @@ export class ComidaComponent implements OnInit, AfterViewInit {
       }
     });
     
+  }
+
+  mostrarTipoComida(value: string){
+    if(value === "Sandwich"){
+      this.tipoComida = 0
+    }else{
+      this.tipoComida = 1
+    }
   }
 
   actualizarComida(){
@@ -157,13 +174,13 @@ export class ComidaComponent implements OnInit, AfterViewInit {
     this.onClickAbrirModal();
     const comida = this.comidas.find(c => c.idComida === id);
     let comidaMostrar;
-    this.comidaService.obtenerComidaPorId(comida!.idComida).subscribe(data => {
+    this.comidaService.obtenerComidaPorId(comida!.idComida.toString()).subscribe(data => {
       comidaMostrar = data;
       if (comidaMostrar) {
         this.comidaForm.patchValue({
           descComida: comidaMostrar.descComida,
-          precioComida: comidaMostrar.precioComida.toString(),
-          stockComida: comidaMostrar.stockComida.toString(),
+          precioComida: comidaMostrar.precioComida,
+          stockComida: comidaMostrar.stockComida,
           tipoComida: comidaMostrar.tipoComida,
           estadoComida: comidaMostrar.estadoComida.toString()
         });
@@ -196,10 +213,11 @@ export class ComidaComponent implements OnInit, AfterViewInit {
         const comida = this.comidas.find(c => c.idComida === id);
         let index = this.comidas.findIndex(c => c.idComida === id);
         let comidaMostrar;
-        this.comidaService.obtenerComidaPorId(comida!.idComida).subscribe(data => {
+        this.comidaService.obtenerComidaPorId(comida!.idComida.toString()).subscribe(data => {
           comidaMostrar = data;
           this.dataComida.data.splice(index, 1);
           this.dataComida.data.push(comidaMostrar);
+          this.dataComida.data.sort((a, b) => Number(a.idComida.substring(0)) - Number(b.idComida.substring(0)));
           this.dataComida._updateChangeSubscription();
           this.mostrarNotificacionExito();
           this.dialog.closeAll();

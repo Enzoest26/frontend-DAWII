@@ -1,3 +1,5 @@
+import { TipoPostre } from "./tipo-postre";
+
 export interface Comida {
     idComida: string;
     descComida: string;
@@ -5,4 +7,6 @@ export interface Comida {
     stockComida: number;
     tipoComida: string;
     estadoComida: number;
+    tipoPostre: TipoPostre;
+    idTipoPostre: number
 }

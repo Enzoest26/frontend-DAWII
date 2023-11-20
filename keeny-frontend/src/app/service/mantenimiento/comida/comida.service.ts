@@ -16,7 +16,7 @@ export class ComidaService {
   private urlRegistrarComida = BASE_URL + "/intranet/comida/registrar";
   private urlActualizarComida = BASE_URL + "/intranet/comida/actualizar";
   private urlEliminarComida = BASE_URL + "/intranet/comida/eliminar";
-  private urlBuscarPorIdComida = BASE_URL + "/intranet/comida/buscarPorId";
+  private urlBuscarPorIdComida = BASE_URL + "/intranet/comida";
 
   //publico
   private urlBuscarActivosPaginado = BASE_URL + "/publico/comida/activos";
