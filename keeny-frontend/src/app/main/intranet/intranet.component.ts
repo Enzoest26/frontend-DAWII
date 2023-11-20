@@ -27,6 +27,7 @@ export class IntranetComponent implements OnInit{
   {
     localStorage.removeItem("token");
     localStorage.removeItem("email");
+    localStorage.removeItem("rol");
     this.router.navigate(["login"]);
   }
 

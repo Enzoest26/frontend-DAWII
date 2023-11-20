@@ -20,7 +20,11 @@ export class LocalStorageService {
 
   obtenerEmail() : string{
     const email = localStorage.getItem("email");
-    console.log(email); 
     return email!;
+  }
+
+  obtenerRol() : string{
+    const rol = localStorage.getItem("rol");
+    return rol!;
   }
 }

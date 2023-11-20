@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { AutenticadoService } from 'src/app/service/autenticado/autenticado.service';
+import { Router } from '@angular/router';
+import { LocalStorageService } from 'src/app/service/local-storage/local-storage.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,10 +9,28 @@ import { AutenticadoService } from 'src/app/service/autenticado/autenticado.serv
 })
 export class NavbarComponent {
 
-  constructor(private autenticadoService : AutenticadoService){}
+  constructor(private localStorageService : LocalStorageService, private router: Router){}
 
   isAutenticado() : Boolean
   {
-    return this.autenticadoService.isAutenticado();
+    return this.localStorageService.estaLogueado();
+  }
+
+  obtenerRol(): string{
+    return this.localStorageService.obtenerRol();
+  }
+
+  esUser():boolean{
+    if(this.obtenerRol() === 'USER')
+      return true
+    else
+      return false
+  }
+
+  cerrarSesion(){
+    localStorage.removeItem("token");
+    localStorage.removeItem("email");
+    localStorage.removeItem("rol");
+    this.router.navigate(["login"]);
   }
 }

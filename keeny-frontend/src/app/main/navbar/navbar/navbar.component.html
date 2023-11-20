@@ -18,8 +18,9 @@
       <mat-menu #belowMenu="matMenu" yPosition="below">
         <button mat-menu-item *ngIf="!isAutenticado()" routerLink="/login">Ingresar</button>
         <button mat-menu-item *ngIf="!isAutenticado()" routerLink="/registro">Registrase</button>
-        <button mat-menu-item *ngIf="isAutenticado()" routerLink="/intranet">Intranet</button>
-        <button mat-menu-item *ngIf="isAutenticado()">Carrito de Compras</button>
+        <button mat-menu-item *ngIf="isAutenticado() && !esUser()" routerLink="/intranet">Intranet</button>
+        <button mat-menu-item *ngIf="isAutenticado() && esUser()">Carrito de Compras</button>
+        <button mat-menu-item *ngIf="isAutenticado()" (click)="cerrarSesion()">Cerrar Sesión</button>
       </mat-menu>
 
 </mat-toolbar>

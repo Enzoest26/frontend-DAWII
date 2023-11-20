@@ -1,9 +1,10 @@
-import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { BaseResponse } from 'src/app/modal/base-response';
 import { AutenticadoService } from 'src/app/service/autenticado/autenticado.service';
+import { LocalStorageService } from 'src/app/service/local-storage/local-storage.service';
 import { LoginService } from 'src/app/service/login/login.service';
 
 @Component({
@@ -11,39 +12,55 @@ import { LoginService } from 'src/app/service/login/login.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
   @ViewChild('notificacion') notificacion!: TemplateRef<any>
 
   loginForm : FormGroup;
 
   response?: BaseResponse;
-  constructor(private loginSevice : LoginService, public autenticadoService : AutenticadoService, private formBuilder : FormBuilder, private router : Router
-    , private snackBar : MatSnackBar)
+  constructor(private loginSevice : LoginService, private formBuilder : FormBuilder, private router : Router
+    , private snackBar : MatSnackBar, private localStorageService : LocalStorageService)
   {
-    if(autenticadoService.isAutenticado())
-    {
-      this.router.navigate(["/intranet"]);
-    }
+    
 
     this.loginForm = this.formBuilder.group({
       idUsuario : ['', Validators.required],
       clave: ['', Validators.required]
     });
   }
+  ngOnInit(): void {
+    console.log(this.localStorageService.estaLogueado());
+    if(this.localStorageService.estaLogueado()){
+      if(this.localStorageService.obtenerRol() === 'USER'){
+        console.log(this.localStorageService.obtenerRol());
+        console.log("Es usuario");
+        this.router.navigate(["/"]);
+      }else{
+        this.router.navigate(["/intranet"]);
+      }
+    }
+  }
 
   validarIngreso()
   {
-    if(this.loginForm.invalid)
-    {
+    if(this.loginForm.invalid){
       return;
     }
 
     let login = this.loginForm.value;
     this.loginSevice.login(login).subscribe({
       next : data => {
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("email", login.idUsuario);
-        this.router.navigate(["/intranet"]);
+        if(data.rol === 'USER'){
+          console.log("Es Usuario");
+          localStorage.setItem("email", login.idUsuario);
+          localStorage.setItem("rol", data.rol);
+          this.router.navigate(["/"]);
+        }else{
+          localStorage.setItem("email", login.idUsuario);
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("rol", data.rol);
+          this.router.navigate(["/intranet"]);
+        }
       },
       error : error =>{
         console.error(error);
