@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit{
         this.response = error.error;
         this.snackBar.openFromTemplate(this.notificacion, {
           duration: 3 * 1000,
-          horizontalPosition: 'right',
+          horizontalPosition: 'center',
           verticalPosition: 'top',
           panelClass: 'fondo-notificacion-error'
         });

@@ -1,39 +1,41 @@
 <div class="general-container">
-    <div class="cont-login">
-        <div class="cont-left">
-            <img src="../../../assets/imgs/img_logo.jpg" alt="" style="height: 5rem; width: 3rem;">
-            <div class="text-center">
-                <h1>BIENVENIDO</h1>
-                <p>Inicia sesión para navegar por la cafeteria</p>
+    <div class="box">
+        <div class="inner-box">
+            <div class="forms-wrap">
+                <form class="iniciar-sesion" [formGroup]="loginForm">
+                    <div class="logo">
+                        <img src="../../../assets/imgs/img_logo.jpg" alt="keeny" class="lo">
+                    </div>
+                    <div class="cabecera">
+                        <h2>BIENVENIDO 👋</h2>
+                        <h6>Inicia sesión para navegar por la cafetería</h6>
+                    </div>
+                    <div class="actual-form">
+
+                        <div class="input-field2">
+                            <input matInput formControlName="idUsuario">
+                            <label class="lbl">Correo electrónico</label>
+                        </div>
+                        <div class="input-field2">
+                            <input matInput type="password" formControlName="clave">
+                            <label class="lbl">Contraseña</label>
+                        </div>
+
+                        <!-- btnIngresar -->
+                        <input type="submit" value="Iniciar sesión" class="ingresar-btn" (click)="validarIngreso()">
+                        <p class="text">
+                            ¿No tienes una cuenta? 
+                            <a routerLink="/registro">Registrate aquí</a>
+                        </p>
+                    </div>
+                </form>
             </div>
-            <form [formGroup]="loginForm">
-                <div class="form-group">
-                    <mat-form-field appearance="outline">
-                        <mat-label>Correo Electrónico</mat-label>
-                        <input matInput formControlName="idUsuario" placeholder="Ejm: example@gmail.com">
-                    </mat-form-field>
-                </div>
-                <div class="form-group">
-                    <mat-form-field appearance="outline">
-                        <mat-label>Contraseña</mat-label>
-                        <input matInput type="password" formControlName="clave" placeholder="*****">
-                    </mat-form-field>
-                </div>
-                <div class="d-flex justify-content-center">
-                    <button mat-flat-button (click)="validarIngreso()">Iniciar Sesión</button>
-                </div>
-                
-            </form>
-            <div>
-                <p>¿No tienes cuenta? <a routerLink="/registro">Registrate aquí</a></p>
+            <div class="carrusel">
             </div>
-        </div>
-        <div class="cont-right">
-            <img src="../../../assets/imgs/foto_login.png" alt="" >
         </div>
     </div>
 </div>
 <ng-template #notificacion>
-    <h4>Incorrecto</h4>
+    <h4>Inicio de sesión fallido 🚫</h4>
     <p *ngIf="response?.msjRespuesta">{{response?.msjRespuesta}}</p>
-  </ng-template>
+</ng-template>
