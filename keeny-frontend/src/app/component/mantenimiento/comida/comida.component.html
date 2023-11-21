@@ -123,7 +123,7 @@
       <div class="form-group row campos" *ngIf="tipoComida == 1">
         <mat-form-field appearance="outline">
           <mat-label>Tipo Postre</mat-label>
-          <mat-select formControlName="tipoPostre">
+          <mat-select #selectComida>
             <mat-option *ngFor="let tipo of tipoPostres" [value]="tipo.idTipo">{{tipo.descripcion}}</mat-option>
           </mat-select>
           <mat-error *ngIf="comidaForm.hasError('required', 'tipoPostre')">*Campo Obligatorio</mat-error>

@@ -3,12 +3,14 @@ import { AfterViewInit, Component, OnInit, TemplateRef, ViewChild } from '@angul
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSelect } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { BaseResponse } from 'src/app/modal/base-response';
 import { Comida } from 'src/app/modal/comida';
 import { TipoPostre } from 'src/app/modal/tipo-postre';
 import { ComidaService } from 'src/app/service/mantenimiento/comida/comida.service';
+import { PostreService } from 'src/app/service/mantenimiento/postre/postre.service';
 import { TipoPostreService } from 'src/app/service/mantenimiento/tipoPostre/tipo-postre.service';
 import { BOTON_ACTUALIZAR, BOTON_REGISTRAR, PATTERN_ALFABETICO_ESPACIO, PATTERN_NUMERICO, TITULO_ELIMINAR, TITULO_ERROR_NOTIFICACION, TITULO_EXITO_NOTIFICACION } from 'src/app/util/constantes';
 
@@ -22,6 +24,7 @@ export class ComidaComponent implements OnInit, AfterViewInit {
   @ViewChild('notificacion') notificacion!: TemplateRef<any>
   @ViewChild('dialogEliminar') dialogEliminar!: TemplateRef<any>
   @ViewChild('matPaginator') paginator!: MatPaginator;
+  @ViewChild('selectComida') selectComida !: MatSelect;
 
   public comidas!: Comida[];
   public tipoPostres!: TipoPostre[];
@@ -52,14 +55,14 @@ export class ComidaComponent implements OnInit, AfterViewInit {
   idComidaActualizar? : number;
 
   constructor(private comidaService : ComidaService, private tipoPostreService : TipoPostreService,
-    private formBuilder : FormBuilder, private dialog : MatDialog, private snackBar : MatSnackBar){
+    private formBuilder : FormBuilder, private dialog : MatDialog, private snackBar : MatSnackBar, private postreService : PostreService){
     this.comidaForm = this.formBuilder.group({
       descComida: ['', [Validators.required, Validators.minLength(4), Validators.pattern(PATTERN_ALFABETICO_ESPACIO)]],
       precioComida: ['', [Validators.required, Validators.min(0)]],
       stockComida: ['', [Validators.required]],
       tipoComida: ['', [Validators.required]],
       estadoComida: ['', [Validators.required]],
-      tipoPostre: ['', [Validators.required]]
+      //tipoPostre: ['', [Validators.required]]
     });
     
     this.dataComida = new MatTableDataSource<Comida>([]);
@@ -115,6 +118,9 @@ export class ComidaComponent implements OnInit, AfterViewInit {
     comida.idTipoPostre = comida.tipoPostre;
     comida.tipoPostre = null;
     comida.estadoComida = Number(comida.estadoComida);
+    if(comida.tipoComida === "Postre"){
+      comida.idTipoPostre = this.selectComida.value;
+    }
     this.comidaService.registrarComida(comida).subscribe({
       next: data => {
         console.log(data);
@@ -150,6 +156,9 @@ export class ComidaComponent implements OnInit, AfterViewInit {
     let comida = this.comidaForm.value;
     comida.idComida = this.idComidaActualizar;
     comida.estadoComida = Number(comida.estadoComida);
+    if(comida.tipoComida === "Postre"){
+      comida.idTipoPostre = this.selectComida.value;
+    }
     const index = this.dataComida.data.findIndex(c => c.idComida === comida.idComida);
     this.comidaService.actualizarComida(comida).subscribe({
       next: data => {
@@ -157,7 +166,6 @@ export class ComidaComponent implements OnInit, AfterViewInit {
         this.dialog.closeAll();
         this.dataComida.data[index] = data;
         this.dataComida._updateChangeSubscription();
-        console.log(this.baseResponse);
         this.mostrarNotificacionExito();
         this.limpiarFormulario();
       },
@@ -184,6 +192,14 @@ export class ComidaComponent implements OnInit, AfterViewInit {
           tipoComida: comidaMostrar.tipoComida,
           estadoComida: comidaMostrar.estadoComida.toString()
         });
+        if(comidaMostrar.tipoComida === 'Postre'){
+          this.tipoComida = 1;
+          this.postreService.obtenerPostrePorId(comida!.idComida).subscribe(data => {
+            this.selectComida.value = data.tipoPostre.idTipo
+          });
+        }else{
+          this.tipoComida = 0;
+        }
       }
       this.idComidaActualizar = comidaMostrar.idComida;
     });
