@@ -121,21 +121,45 @@ export class ComidaComponent implements OnInit, AfterViewInit {
     if(comida.tipoComida === "Postre"){
       comida.idTipoPostre = this.selectComida.value;
     }
-    this.comidaService.registrarComida(comida).subscribe({
-      next: data => {
-        console.log(data);
-        this.mostrarNotificacionExito();
-        this.dialog.closeAll();
-        this.dataComida.data.push(data);
-        this.dataComida._updateChangeSubscription();
-        this.limpiarFormulario();
-      },
-      error: (error : HttpErrorResponse) =>{
-        this.baseResponse = error.error;
-        this.mostrarNotificacionError();
+    const imageHtml = document.getElementById("imagenFile") as HTMLInputElement;
+    const imagenFile = imageHtml.files?.[0];
+    if(imagenFile){
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const base64String = event.target?.result as string;
+        comida.imagen = base64String.split(',')[1]; 
+        this.comidaService.registrarComida(comida).subscribe({
+          next: data => {
+            let response : BaseResponse = {
+              codRespuesta : "0",
+              descripcion : "Registro Exitoso.",
+              msjRespuesta : "Registro Exitoso."
+            }
+            this.baseResponse = response;
+            this.mostrarNotificacionExito();
+            this.dialog.closeAll();
+            this.dataComida.data.push(data);
+            this.dataComida._updateChangeSubscription();
+            this.limpiarFormulario();
+          },
+          error: (error : HttpErrorResponse) =>{
+            this.baseResponse = error.error;
+            this.mostrarNotificacionError();
+          }
+        });
+      };
+
+      reader.readAsDataURL(imagenFile);
+    }else{
+      let response : BaseResponse = {
+        codRespuesta : "1",
+        descripcion : "Ingrese una imagen correcta.",
+        msjRespuesta : "Error"
       }
-    });
-    
+      this.baseResponse = response;
+      this.mostrarNotificacionError()
+    }
+
   }
 
   mostrarTipoComida(value: string){
@@ -160,20 +184,59 @@ export class ComidaComponent implements OnInit, AfterViewInit {
       comida.idTipoPostre = this.selectComida.value;
     }
     const index = this.dataComida.data.findIndex(c => c.idComida === comida.idComida);
-    this.comidaService.actualizarComida(comida).subscribe({
-      next: data => {
-        this.mostrarNotificacionExito();
-        this.dialog.closeAll();
-        this.dataComida.data[index] = data;
-        this.dataComida._updateChangeSubscription();
-        this.mostrarNotificacionExito();
-        this.limpiarFormulario();
-      },
-      error: (error : HttpErrorResponse) =>{
-        this.baseResponse = error.error;
-        this.mostrarNotificacionError();
-      }
-    });
+    const imageHtml = document.getElementById("imagenFile") as HTMLInputElement;
+    const imagenFile = imageHtml.files?.[0];
+    if(imagenFile){
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const base64String = event.target?.result as string;
+        comida.imagen = base64String.split(',')[1]; 
+        this.comidaService.actualizarComida(comida).subscribe({
+          next: data => {
+            let response : BaseResponse = {
+              codRespuesta : "0",
+              descripcion : "Registro Exitoso.",
+              msjRespuesta : "Registro Exitoso."
+            }
+            this.baseResponse = response;
+            this.mostrarNotificacionExito();
+            this.dialog.closeAll();
+            this.dataComida.data[index] = data;
+            this.dataComida._updateChangeSubscription();
+            this.mostrarNotificacionExito();
+            this.limpiarFormulario();
+          },
+          error: (error : HttpErrorResponse) =>{
+            this.baseResponse = error.error;
+            this.mostrarNotificacionError();
+          }
+        });
+      };
+      
+      reader.readAsDataURL(imagenFile);
+    }else{
+      comida.imagen = null;
+      this.comidaService.actualizarComida(comida).subscribe({
+        next: data => {
+          let response : BaseResponse = {
+            codRespuesta : "0",
+            descripcion : "Registro Exitoso.",
+            msjRespuesta : "Registro Exitoso."
+          }
+          this.baseResponse = response;
+          this.mostrarNotificacionExito();
+          this.dialog.closeAll();
+          this.dataComida.data[index] = data;
+          this.dataComida._updateChangeSubscription();
+          this.mostrarNotificacionExito();
+          this.limpiarFormulario();
+        },
+        error: (error : HttpErrorResponse) =>{
+          this.baseResponse = error.error;
+          this.mostrarNotificacionError();
+        }
+      });
+    }
     
   }
 
@@ -182,6 +245,7 @@ export class ComidaComponent implements OnInit, AfterViewInit {
     this.onClickAbrirModal();
     const comida = this.comidas.find(c => c.idComida === id);
     let comidaMostrar;
+    
     this.comidaService.obtenerComidaPorId(comida!.idComida.toString()).subscribe(data => {
       comidaMostrar = data;
       if (comidaMostrar) {

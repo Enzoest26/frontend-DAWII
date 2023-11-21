@@ -10,7 +10,7 @@
                 <img src="../../../assets/imgs/img_logo.jpg" alt="" [class.tamanio-img-escondido]="!opened" [class.tamanio-img]="opened">
             </div>
             <div class="cont-text-usuario" *ngIf="opened">
-                <h3 class="text-center">Usuario</h3>
+                <h3 class="text-center">{{usuarioNombre}}</h3>
             </div>
         </div>
         <app-sidebar></app-sidebar>

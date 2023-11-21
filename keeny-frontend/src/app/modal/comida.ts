@@ -7,6 +7,7 @@ export interface Comida {
     stockComida: number;
     tipoComida: string;
     estadoComida: number;
+    imagen: string;
     tipoPostre: TipoPostre;
     idTipoPostre: number
 }

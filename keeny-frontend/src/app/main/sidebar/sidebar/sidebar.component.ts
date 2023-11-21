@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { SidebarService } from './sidebar.service';
+import { LocalStorageService } from 'src/app/service/local-storage/local-storage.service';
+import { UsuarioService } from 'src/app/service/mantenimiento/usuario/usuario.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -19,4 +21,6 @@ export class SidebarComponent {
     this.estatus = this.sidebarService.opened;
     return this.estatus;
   }
+
+  
 }

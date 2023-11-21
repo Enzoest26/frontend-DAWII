@@ -8,6 +8,7 @@ export interface DtoComida{
     stockComida: number;
     tipoComida: string;
     estadoComida: number;
+    imagen: string;
     postre: Postre;
     sandwich: Sandwich;
 }

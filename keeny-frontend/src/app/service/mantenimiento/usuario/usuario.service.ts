@@ -15,6 +15,7 @@ export class UsuarioService {
   private urlActualizarUsuario = BASE_URL + "/intranet/usuario/actualizar";
   private urlEliminarUsuario = BASE_URL + "/intranet/usuario/eliminar";
   private urlBuscarPorIdUsuario = BASE_URL + "/intranet/usuario/buscarPorId";
+  private urlBuscarPorEmail = BASE_URL + "/intranet/usuario/buscarPorEmail";
   constructor(private http : HttpClient) { }
 
   obtenerUsuarios() : Observable<Usuario[]>
@@ -25,6 +26,10 @@ export class UsuarioService {
   obtenerUsuariosPorId(id: string) : Observable<any>
   {
     return this.http.get<any>(`${this.urlBuscarPorIdUsuario}/${id}`);
+  }
+
+  obtenerUsuarioPorEmail(email : string) : Observable<any>{
+    return this.http.get<Usuario>(`${this.urlBuscarPorEmail}/${email}`)
   }
 
   registrarUsuario(body : any) : Observable<any>
