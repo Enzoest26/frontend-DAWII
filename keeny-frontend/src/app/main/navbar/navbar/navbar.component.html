@@ -1,26 +1,26 @@
 <mat-toolbar style="height: 5rem;">
-      <img src="../../../../assets/imgs/img_logo.jpg" class="img-logo" />
-      <span class="example-spacer"></span>
-      <button mat-stroked-button routerLink="" style="margin-right: 10px;">Inicio</button>
-      <button mat-button [matMenuTriggerFor]="menu">Catalogo</button>
-      <mat-menu #menu="matMenu">
-        <a mat-menu-item routerLink="/catalogo-comidas">Comidas</a>
-        <a mat-menu-item routerLink="/catalogo-bebida">Bebidas</a>
-      </mat-menu>
-      <a routerLink="/carrito-compras" mat-icon-button style="margin-left: 2rem;">
-        <mat-icon>shopping_cart</mat-icon>
-      </a>
-      <button mat-icon-button style="margin-left: 1.5rem;" [matMenuTriggerFor]="belowMenu">
-        <mat-icon>account_circle</mat-icon>
-      </button>
-      <mat-menu #belowMenu="matMenu" yPosition="below">
-        <button mat-menu-item *ngIf="!isAutenticado()" routerLink="/login">Ingresar</button>
-        <button mat-menu-item *ngIf="!isAutenticado()" routerLink="/registro">Registrase</button>
-        <button mat-menu-item *ngIf="isAutenticado() && !esUser()" routerLink="/intranet">Intranet</button>
-        <button mat-menu-item *ngIf="isAutenticado() && esUser()">Carrito de Compras</button>
-        <button mat-menu-item *ngIf="isAutenticado()" (click)="cerrarSesion()">Cerrar Sesión</button>
-      </mat-menu>
-
+  <a routerLink=""><img src="../../../../assets/imgs/img_logo.png" class="img-logo" /></a>
+  <span class="example-spacer"></span>
+  <button mat-stroked-button routerLink="" style="margin-right: 10px;">Inicio</button>
+  <button mat-button [matMenuTriggerFor]="menu">Catalogo</button>
+  <mat-menu #menu="matMenu">
+    <a mat-menu-item routerLink="/catalogo-comidas">Comidas</a>
+    <a mat-menu-item routerLink="/catalogo-bebida">Bebidas</a>
+  </mat-menu>
+  <a routerLink="/carrito-compras" mat-icon-button style="margin-left: 2rem;">
+    <mat-icon>shopping_cart</mat-icon>
+  </a>
+  <button mat-icon-button style="margin-left: 1.5rem;" [matMenuTriggerFor]="belowMenu">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+  <mat-menu #belowMenu="matMenu" yPosition="below">
+    <button mat-menu-item *ngIf="!isAutenticado()" routerLink="/login">Ingresar</button>
+    <button mat-menu-item *ngIf="!isAutenticado()" routerLink="/registro">Registrase</button>
+    <button mat-menu-item *ngIf="isAutenticado() && !esUser()" routerLink="/intranet">Intranet</button>
+    <button mat-menu-item *ngIf="isAutenticado() && esUser()">Carrito de Compras</button>
+    <button mat-menu-item *ngIf="isAutenticado()" (click)="cerrarSesion()">Cerrar Sesión</button>
+  </mat-menu>
 </mat-toolbar>
+
 <router-outlet></router-outlet>
 
