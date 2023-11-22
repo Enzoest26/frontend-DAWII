@@ -1,6 +1,10 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import { Observable } from 'rxjs';
+import { Boleta } from 'src/app/modal/boleta';
+import { BASE_URL } from 'src/app/util/constantes';
 
 
 @Injectable({
@@ -8,14 +12,15 @@ import autoTable from 'jspdf-autotable';
 })
 export class VentaService {
 
-  private ventas: any[] = [
-    { numBol: 1, fechaBol: '17/11/2023', id_cliente: 1, idUsuario: 2, totalBol: 50 },
-    { numBol: 2, fechaBol: '15/10/2023', id_cliente: 2, idUsuario: 2, totalBol: 45.50 },
-    { numBol: 3, fechaBol: '02/10/2023', id_cliente: 3, idUsuario: 2, totalBol: 12.70 }
-    // otros datos
-  ];
+  private urlListarBoleta = BASE_URL + "/intranet/boleta/listar";
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  listarBoletas(): Observable<Boleta[]> 
+  {
+    return this.http.get<Boleta[]>(`${this.urlListarBoleta}`);
+  }
+
 
   imprimir(encabezado : string[], cuerpo : Array<any>, titulo : string, guardar? : boolean ){
     const doc = new jsPDF({
@@ -29,29 +34,13 @@ export class VentaService {
       body: cuerpo,
     })
 
-
     if(guardar){
       const hoy = new Date();
       doc.save(hoy.getDate() + hoy.getMonth() + hoy.getFullYear() + hoy.getTime() + '.pdf');
+      // doc.save(`${hoy.toISOString()}.pdf`);
     }
     else{
 
     }
-  }
-
- filtrar(fecha: string, productoId: string): any[] {
-  
-    // Filtrar por fecha
-    let ventasFiltradas = this.ventas;
-    if (fecha) {
-      ventasFiltradas = ventasFiltradas.filter(venta => venta.fechaBol.includes(fecha));
-    }
-
-    // Filtrar por ID de producto
-    if (productoId) {
-      ventasFiltradas = ventasFiltradas.filter(venta => venta.id_cliente.toString() === productoId);
-    }
-
-    return ventasFiltradas;
   }
 }
