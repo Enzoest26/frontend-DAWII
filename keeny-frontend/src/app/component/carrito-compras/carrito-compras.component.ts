@@ -55,6 +55,7 @@ export class CarritoComprasComponent implements OnInit, AfterViewInit{
 
   eliminarProducto(idProducto : string){
     this.carritoService.eliminarProducto(idProducto);
+    this.dataCarrito = new MatTableDataSource(this.carritoService.obtenerTodoCarrito());
   }
 
   calcularTotalPagar(){
