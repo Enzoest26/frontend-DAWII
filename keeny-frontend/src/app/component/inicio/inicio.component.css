@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+*{
+    /*font-family: "Poppins", sans-serif;*/
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-padding-top: 2rem;
+    text-decoration: none;
+    list-style: none;
+    scroll-behavior: smooth;
+}
+
+*::selection{
+    color: white;
+    background: #e6a612;
+}
+
+section{
+    padding: 50px 10%;
+}
+img{
+    width: 100%;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+}
+
+.logo img{
+    width: 65px;
+}
+
+#menu-icon{
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1001;
+    display: none;
+}
+
+.inicio{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: #1a1a1a;
+    background-image: url("https://www.transparenttextures.com/patterns/inspiration-geometry.png");
+    gap: 1rem;
+}
+.inicio-texto{
+    flex: 1 1 17rem;
+}
+.inicio-img{
+    flex: 1 1 17rem;
+}
+.inicio-img img{
+    animation: animate 3s linear infinite;
+}
+
+@keyframes animate{
+    0%{
+        transform: translate(-11px, 0);
+    }
+    50%{
+        transform: translate(-0px, -11px);
+    }
+    100%{
+        transform: translate(-11px, 0);
+    }
+}
+
+.inicio-texto span{
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    /*4c3606*/
+    color: #ffffff;
+}
+.inicio-texto h1{
+    font-size: 3.2rem;
+    color: #e6a612;
+    font-weight: bolder;
+}
+.inicio-texto h2{
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0.5rem 0 1.4rem;
+    text-transform: uppercase;
+}
+
+.btn{
+    padding: 7px 16px;
+    border: 2px solid #ffffff;
+    border-radius: 40px;
+    color: #ffffff;
+    font-weight: 500;
+}
+.btn:hover{
+    color: #fff;
+    background: #e6a612;
+}
+
+.heading{
+    text-align: center;
+    text-transform: uppercase;
+}
+.heading span{
+    font-size: 1rem;
+    font-weight: 600;
+    color: #4c3606;
+}
+.heading h1{
+    font-size: 2rem;
+    color: #e6a612;
+}
