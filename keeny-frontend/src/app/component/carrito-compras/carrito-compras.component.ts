@@ -54,13 +54,13 @@ export class CarritoComprasComponent implements OnInit, AfterViewInit{
   }
 
   eliminarProducto(idProducto : string){
-
+    this.carritoService.eliminarProducto(idProducto);
   }
 
   calcularTotalPagar(){
     let totalPagar = 0;
     this.carritoService.obtenerTodoCarrito().forEach(s => totalPagar += (s.precio * s.cantidad));
-    return totalPagar;
+    return totalPagar.toFixed(2);
   }
 
 }

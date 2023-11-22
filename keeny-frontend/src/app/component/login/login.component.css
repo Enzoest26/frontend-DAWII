@@ -39,7 +39,11 @@ button{
     background-color: #C2272F !important;
     color: white;
 }*/
-
+.text-danger{
+    font-size: 12px;
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+}
 .box{
     position: relative;
     width: 100%;

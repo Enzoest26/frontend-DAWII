@@ -16,9 +16,18 @@
                             <input matInput formControlName="idUsuario">
                             <label class="lbl">Correo electrónico</label>
                         </div>
+                        <div class="text-danger" *ngIf="this.loginForm.hasError('required', 'idUsuario') && !formValid">
+                            Ingrese su correo electrónico.
+                        </div>
+                        <div class="text-danger" *ngIf="this.loginForm.hasError('email', 'idUsuario') && !formValid">
+                            Correo electrónico invalido.
+                        </div>
                         <div class="input-field2">
                             <input matInput type="password" formControlName="clave">
                             <label class="lbl">Contraseña</label>
+                        </div>
+                        <div class="text-danger" *ngIf="this.loginForm.hasError('required', 'clave') && !formValid">
+                            Ingrese su contraseña.
                         </div>
 
                         <!-- btnIngresar -->

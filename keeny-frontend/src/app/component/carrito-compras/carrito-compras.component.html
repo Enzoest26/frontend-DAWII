@@ -35,7 +35,7 @@
                           <th mat-header-cell *matHeaderCellDef> </th>
                           <td mat-cell *matCellDef="let carrito">
                             <button mat-icon-button class="color-rojo btn-accion" (click)="eliminarProducto(carrito.idProducto)">
-                              <mat-icon>delete</mat-icon>
+                              <mat-icon class="mat-warn"> delete</mat-icon>
                             </button>
                           </td>
                         </ng-container>
@@ -54,9 +54,9 @@
                 <div class="col-lg-3">
                     <h2 class="card-title">TOTAL A PAGAR</h2>
                     
-                    <ul class="list-group">
+                    <ul class="list-group" >
                         <li class="list-group-item"><h2 style="font-weight: bold;">S/ {{calcularTotalPagar()}}</h2></li>
-                        <a routerLink="/ver-orden" class="btn btn-dark" *ngIf="dataCarrito.data.length != 0">Ver Orden</a>
+                        <a routerLink="/ver-orden"  style="margin-top: 1rem;" class="btn btn-dark" *ngIf="dataCarrito.data.length != 0">Ver Orden</a>
                     </ul>
                 </div>
             </div>

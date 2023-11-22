@@ -18,13 +18,15 @@ export class LoginComponent implements OnInit{
   loginForm : FormGroup;
 
   response?: BaseResponse;
+
+  formValid : Boolean = true;
   constructor(private loginSevice : LoginService, private formBuilder : FormBuilder, private router : Router
     , private snackBar : MatSnackBar, private localStorageService : LocalStorageService)
   {
     
 
     this.loginForm = this.formBuilder.group({
-      idUsuario : ['', Validators.required],
+      idUsuario : ['', [Validators.required, Validators.email]],
       clave: ['', Validators.required]
     });
   }
@@ -32,8 +34,6 @@ export class LoginComponent implements OnInit{
     console.log(this.localStorageService.estaLogueado());
     if(this.localStorageService.estaLogueado()){
       if(this.localStorageService.obtenerRol() === 'USER'){
-        console.log(this.localStorageService.obtenerRol());
-        console.log("Es usuario");
         this.router.navigate(["/"]);
       }else{
         this.router.navigate(["/intranet"]);
@@ -44,9 +44,10 @@ export class LoginComponent implements OnInit{
   validarIngreso()
   {
     if(this.loginForm.invalid){
+      this.formValid = false;
       return;
     }
-
+    this.formValid = true;
     let login = this.loginForm.value;
     this.loginSevice.login(login).subscribe({
       next : data => {
