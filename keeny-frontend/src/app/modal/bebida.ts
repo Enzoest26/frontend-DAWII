@@ -8,6 +8,7 @@ export interface Bebida {
     precioBebida: number;
     stock: number;
     estado: number;
+    imagen: string;
     categoria: CategoriaBebida;
     idCategoria: number;
     tipoBebida: TipoBebida;

@@ -136,21 +136,44 @@ export class BebidaComponent implements OnInit, AfterViewInit {
       bebida.idCategoriaBebida = bebida.categoria;
       bebida.categoriaBebida = null;
       bebida.estado = Number(bebida.estado);
+      const imageHtml = document.getElementById("imagenFile") as HTMLInputElement;
+      const imagenFile = imageHtml.files?.[0];
       console.log(bebida);
-      this.bebidaService.registrarBebida(bebida).subscribe({
-        next: data => {
-          console.log(data);
-          this.mostrarNotificacionExito();
-          this.dialog.closeAll();
-          this.dataBebida.data.push(data);
-          this.dataBebida._updateChangeSubscription();
-          this.limpiarFormulario();
-        },
-        error: (error : HttpErrorResponse) => {
-          this.baseResponse = error.error;
-          this.mostrarNotificacionError();
+      if(imagenFile){
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const base64String = event.target?.result as string;
+          bebida.imagen = base64String.split(',')[1]; 
+          this.bebidaService.registrarBebida(bebida).subscribe({
+            next: data => {
+              let response : BaseResponse = {
+                codRespuesta : "0",
+                descripcion : "Registro Exitoso.",
+                msjRespuesta : "Registro Exitoso."
+              }
+              this.baseResponse = response;
+              this.mostrarNotificacionExito();
+              this.dialog.closeAll();
+              this.dataBebida.data.push(data);
+              this.dataBebida._updateChangeSubscription();
+              this.limpiarFormulario();
+            },
+            error: (error : HttpErrorResponse) =>{
+              this.baseResponse = error.error;
+              this.mostrarNotificacionError();
+            }
+          });
+        };
+        reader.readAsDataURL(imagenFile);
+      }else{
+        let response : BaseResponse = {
+          codRespuesta : "1",
+          descripcion : "Ingrese una imagen correcta.",
+          msjRespuesta : "Error"
         }
-      });
+        this.baseResponse = response;
+        this.mostrarNotificacionError()
+      }
     }
 
     actualizarBebida() {
@@ -172,21 +195,58 @@ export class BebidaComponent implements OnInit, AfterViewInit {
       bebida.categoriaBebida = null;
       bebida.estadoBebida = Number(bebida.estado);
       const index = this.dataBebida.data.findIndex(b => b.idBebida === bebida.idBebida);
-      this.bebidaService.actualizarBebida(bebida!.idBebida.toString(), bebida).subscribe({
-        next: data => {
-          this.mostrarNotificacionExito();
-          this.dialog.closeAll();
-          this.dataBebida.data[index] = data;
-          this.dataBebida._updateChangeSubscription();
-          console.log(this.baseResponse);
-          this.mostrarNotificacionExito();
-          this.limpiarFormulario();
-        },
-        error: (error: HttpErrorResponse) => {
-          this.baseResponse = error.error;
-          this.mostrarNotificacionError();
-        }
-      });
+      const imageHtml = document.getElementById("imagenFile") as HTMLInputElement;
+      const imagenFile = imageHtml.files?.[0];
+      if(imagenFile){
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const base64String = event.target?.result as string;
+          bebida.imagen = base64String.split(',')[1]; 
+          this.bebidaService.actualizarBebida(bebida!.idBebida.toString(), bebida).subscribe({
+            next: data => {
+              let response : BaseResponse = {
+                codRespuesta : "0",
+                descripcion : "Registro Exitoso.",
+                msjRespuesta : "Registro Exitoso."
+              }
+              this.baseResponse = response;
+              this.mostrarNotificacionExito();
+              this.dialog.closeAll();
+              this.dataBebida.data[index] = data;
+              this.dataBebida._updateChangeSubscription();
+              this.mostrarNotificacionExito();
+              this.limpiarFormulario();
+            },
+            error: (error : HttpErrorResponse) =>{
+              this.baseResponse = error.error;
+              this.mostrarNotificacionError();
+            }
+          });
+        };
+        reader.readAsDataURL(imagenFile);
+      }else{
+        bebida.imagen = null;
+        this.bebidaService.actualizarBebida(bebida!.idBebida.toString(), bebida).subscribe({
+          next: data => {
+            let response : BaseResponse = {
+              codRespuesta : "0",
+              descripcion : "Registro Exitoso.",
+              msjRespuesta : "Registro Exitoso."
+            }
+            this.baseResponse = response;
+            this.mostrarNotificacionExito();
+            this.dialog.closeAll();
+            this.dataBebida.data[index] = data;
+            this.dataBebida._updateChangeSubscription();
+            this.mostrarNotificacionExito();
+            this.limpiarFormulario();
+          },
+          error: (error : HttpErrorResponse) =>{
+            this.baseResponse = error.error;
+            this.mostrarNotificacionError();
+          }
+        });
+      }
     }
 
     

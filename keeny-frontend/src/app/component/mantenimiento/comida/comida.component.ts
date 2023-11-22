@@ -101,7 +101,7 @@ export class ComidaComponent implements OnInit, AfterViewInit {
   }
 
   onClickAbrirModal(){
-    this.dialog.open(this.dialogContent, {width: '500px', height: '650px'});
+    this.dialog.open(this.dialogContent, {width: '500px', height: '700px'});
     this.limpiarFormulario();
     this.tituloBoton = BOTON_REGISTRAR + ' COMIDA';
     this.tipoModal = 0;
