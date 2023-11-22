@@ -4,7 +4,16 @@
     <div class="form-container">
         <div class="input-group">
             <label class="label" for="fecha"><b>Rango de Fechas:</b></label>
-            <input type="text" id="fecha" class="form-control me-2" placeholder="Fecha">
+            <mat-form-field>
+                <mat-label>Seleccione un rango</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                  <input matStartDate placeholder="Start date">
+                  <input matEndDate placeholder="End date">
+                </mat-date-range-input>
+                <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+              </mat-form-field>
         </div>
 
         <div class="input-group">
