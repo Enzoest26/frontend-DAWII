@@ -31,12 +31,9 @@ export class LoginComponent implements OnInit{
     });
   }
   ngOnInit(): void {
-    console.log(this.localStorageService.estaLogueado());
     if(this.localStorageService.estaLogueado()){
       if(this.localStorageService.obtenerRol() === 'USER'){
         this.router.navigate(["/"]);
-      }else{
-        this.router.navigate(["/intranet"]);
       }
     }
   }

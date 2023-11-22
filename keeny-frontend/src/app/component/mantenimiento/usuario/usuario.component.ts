@@ -53,10 +53,10 @@ export class UsuarioComponent implements OnInit, AfterViewInit {
     , private formBuilder : FormBuilder, private dialog : MatDialog
     , private snackBar : MatSnackBar){
     this.usuarioForm = this.formBuilder.group({
-      nombre: ['', [Validators.required, Validators.minLength(2), Validators.pattern(PATTERN_ALFABETICO_ESPACIO)]],
-      apellidoPaterno: ['', [Validators.required, Validators.pattern(PATTERN_ALFABETICO)]],
-      apellidoMaterno: ['', [Validators.required, Validators.pattern(PATTERN_ALFABETICO)]],
-      correo: ['', [Validators.required, Validators.email]],
+      nombre: ['', [Validators.required, Validators.pattern(PATTERN_ALFABETICO_ESPACIO), Validators.maxLength(250)]],
+      apellidoPaterno: ['', [Validators.required, Validators.pattern(PATTERN_ALFABETICO), Validators.maxLength(250)]],
+      apellidoMaterno: ['', [Validators.required, Validators.pattern(PATTERN_ALFABETICO), Validators.maxLength(250)]],
+      correo: ['', [Validators.required, Validators.email, Validators.maxLength(100)]],
       clave: ['', Validators.required],
       edad: ['', [Validators.required, Validators.max(100)]],
       estado: ['', Validators.required],
@@ -175,6 +175,7 @@ export class UsuarioComponent implements OnInit, AfterViewInit {
     let usuarioMostrar;
     this.usuarioService.obtenerUsuariosPorId(usuario!.idUsuario.toString()).subscribe(data => {
       usuarioMostrar = data;
+      this.baseResponse = undefined;
       if (usuarioMostrar) {
         this.usuarioForm.patchValue({
           nombre: usuarioMostrar.nombre,

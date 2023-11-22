@@ -86,6 +86,7 @@
         <input matInput type="text"formControlName="nombre">
         <mat-error *ngIf="usuarioForm.hasError('required', 'nombre')">*Campo Obligatorio</mat-error>
         <mat-error *ngIf="usuarioForm.hasError('pattern', 'nombre')">*El Nombre debe ser <b>Alfabetico con un espacios</b></mat-error>
+        <mat-error *ngIf="usuarioForm.hasError('maxlength', 'nombre')">*El Nombre Materno no debe superar de <b>250</b> caracteres</mat-error>
       </mat-form-field>
       
     </div>
@@ -95,6 +96,7 @@
         <input matInput type="text" formControlName="apellidoPaterno">
         <mat-error *ngIf="usuarioForm.hasError('required', 'apellidoPaterno')">*Campo Obligatorio</mat-error>
         <mat-error *ngIf="usuarioForm.hasError('pattern', 'apellidoPaterno')">*El Apellido Paterno debe ser <b>Alfabetico sin espacios</b></mat-error>
+        <mat-error *ngIf="usuarioForm.hasError('maxlength', 'apellidoPaterno')">*El Apellido Paterno no debe superar de <b>250</b> caracteres</mat-error>
       </mat-form-field>
     </div>
     <div class="form-group row campos">
@@ -103,6 +105,7 @@
         <input matInput type="text" formControlName="apellidoMaterno">
         <mat-error *ngIf="usuarioForm.hasError('required', 'apellidoMaterno')">*Campo Obligatorio</mat-error>
         <mat-error *ngIf="usuarioForm.hasError('pattern', 'apellidoMaterno')">*El Apellido Materno debe ser <b>Alfabetico sin espacios</b></mat-error>
+        <mat-error *ngIf="usuarioForm.hasError('maxlength', 'apellidoMaterno')">*El Apellido Materno no debe superar de <b>250</b> caracteres</mat-error>
       </mat-form-field>
     </div>
     <div class="form-group row campos">
@@ -111,6 +114,7 @@
         <input matInput type="text" formControlName="correo">
         <mat-error *ngIf="usuarioForm.hasError('required', 'correo')">*Campo Obligatorio</mat-error>
         <mat-error *ngIf="usuarioForm.hasError('email', 'correo')">*Correo invalido. Ejm: ejemplo@ejemplo.com </mat-error>
+        <mat-error *ngIf="usuarioForm.hasError('maxlength', 'correo')">*El Correo no debe superar de <b>100</b> caracteres</mat-error>
       </mat-form-field>
     </div>
     <div class="form-group row campos">
