@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import jsPDF from 'jspdf';
@@ -11,6 +12,8 @@ import { BASE_URL } from 'src/app/util/constantes';
   providedIn: 'root'
 })
 export class VentaService {
+
+  private datePipe: DatePipe = new DatePipe('en-ES');
 
   private urlListarBoleta = BASE_URL + "/intranet/boleta/listar";
   private urlExportarExcel = BASE_URL + "/intranet/boleta/exportarExcel";
@@ -68,26 +71,47 @@ export class VentaService {
     return this.http.get<Boleta[]>(`${this.urlListarBoleta}`);
   }
 
+  exportarPDF(fechaInicio: string, fechaFin: string, idCliente: string, nombreArchivo: string): void {
+    this.listarBoletasPorFiltros(fechaInicio, fechaFin, idCliente).subscribe(data => {
+      const encabezado = ['Número de Boleta', 'Fecha', 'Cliente', 'Total'];
+      const cuerpo = data.map(boleta => [
+        boleta.numBoleta,
+        this.datePipe.transform(boleta.fechaBoleta, 'dd/MM/yyyy'),
+        `${boleta.idCliente.nombre_cliente} ${boleta.idCliente.apellidos_cliente}`,
+        `S/. ${boleta.totalMonto}`
+      ]);
+  
+      this.imprimir(encabezado, cuerpo, 'Reporte de Ventas', true, nombreArchivo);
+    });
+  }
 
-  imprimir(encabezado : string[], cuerpo : Array<any>, titulo : string, guardar? : boolean ){
+  imprimir(encabezado : string[], cuerpo : Array<any>, titulo : string, guardar? : boolean, nombreArchivo?: string): void{
     const doc = new jsPDF({
       orientation: "p",
       unit: "px",
       format: 'letter'
     });
+    
     doc.text(titulo, doc.internal.pageSize.width / 2,25,{align: 'center'});
     autoTable(doc, {
       head: [encabezado],
       body: cuerpo,
     })
 
-    if(guardar){
-      const hoy = new Date();
-      doc.save(hoy.getDate() + hoy.getMonth() + hoy.getFullYear() + hoy.getTime() + '.pdf');
-      // doc.save(`${hoy.toISOString()}.pdf`);
-    }
-    else{
+    const fechaHora = new Date();
+    const fechaTexto = `Fecha: ${fechaHora.toLocaleDateString()}`;
+    const horaTexto = `Hora: ${fechaHora.toLocaleTimeString()}`;
+    const pX = doc.internal.pageSize.width - 20;
+    const pY = doc.internal.pageSize.height - 10;
+    doc.text(`${fechaTexto} - ${horaTexto}`, pX, pY, { align: 'right' });
 
+
+    if (guardar) {
+      const hoy = new Date();
+      const nombrePDF = nombreArchivo ? `${nombreArchivo}.pdf` : `${hoy.getDate()}${hoy.getMonth()}${hoy.getFullYear()}${hoy.getTime()}.pdf`;
+      doc.save(nombrePDF);
+    } else {
+      
     }
   }
 }
