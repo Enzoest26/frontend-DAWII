@@ -27,7 +27,7 @@ export class VerComidaComponent implements OnInit{
 
   agregarCarrito(){
     const cantidad = this.inputRef.nativeElement.value;
-    let isAdded = this.carritoService.agregarProducto(this.comida.idComida, Number(cantidad), this.comida.precioComida * cantidad, this.comida.descComida);
+    let isAdded = this.carritoService.agregarProducto(this.comida.idComida, Number(cantidad), this.comida.precioComida, this.comida.descComida);
 
     if(isAdded == false){
       this.snackBar.openFromTemplate(this.notificacionError, {
