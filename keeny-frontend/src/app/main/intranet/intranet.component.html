@@ -19,7 +19,7 @@
                 <mat-icon style="font-size: 40px; margin-left: 10px;">logout</mat-icon>
                 {{opened ? 'Cerrar Sesión' : ''}}
             </a>
-            <a mat-flat-button [class.btn-volver-escondido]="!opened" [class.btn-volver]="opened">
+            <a routerLink="/" mat-flat-button [class.btn-volver-escondido]="!opened" [class.btn-volver]="opened">
                 <mat-icon style="font-size: 40px; margin-left: 10px;">undo</mat-icon>
                 {{opened ? 'Volver' : ''}}
             </a>

@@ -107,6 +107,7 @@ export class GenerarBoletaComponent implements OnInit, AfterViewInit{
           verticalPosition: 'bottom',
         });
         this.carritoService.limpiarLocalStorage();
+        this.dataCarrito.data = [];
         //this.router.navigate(["/"]);
       }, error : error =>{
         this.baseResponse = error.error;

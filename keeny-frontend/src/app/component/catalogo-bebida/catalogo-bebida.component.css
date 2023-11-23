@@ -13,12 +13,12 @@
 
 .example-card {
     max-width: 306px;
-    max-height: 400px;
+    max-height: 450px;
     margin: 1rem 3rem 2rem 3rem;
 }
 
 img{
-    height: 400px;
+    height: 300px;
 }
 .mdc-card__actions{
     justify-content: space-around;
@@ -45,7 +45,8 @@ img{
     margin-bottom: 1rem;
     font-weight: bold;
 }
+
 .example-card:hover{
-    box-shadow: 0px 0px 3px 2px rgb(136, 136, 136);
+    box-shadow: 0px 0px 3px 2px rgb(179, 179, 179);
     transition: 0.5s;
 }
