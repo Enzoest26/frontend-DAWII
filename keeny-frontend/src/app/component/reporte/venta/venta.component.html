@@ -1,16 +1,16 @@
 <div class="container">
     <h4 class="title">REPORTE DE VENTAS</h4>
 
-    <div class="form-container">
-        <div class="input-group">
+    <form class="form-container" [formGroup]="filtroForm">
+        <div class="input-group" >
             <label class="label" for="fecha"><b>Rango de Fechas:</b></label>
             <mat-form-field>
                 <mat-label>Seleccione un rango</mat-label>
                 <mat-date-range-input [rangePicker]="picker">
-                  <input matStartDate placeholder="Start date">
-                  <input matEndDate placeholder="End date">
+                  <input matStartDate placeholder="Fecha Inicio" #fechaInicio formControlName="fechaInicio">
+                  <input matEndDate placeholder="Fecha Final" #fechaFinal formControlName="fechaFin">
                 </mat-date-range-input>
-                <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-date-range-picker #picker></mat-date-range-picker>
               </mat-form-field>
@@ -18,15 +18,15 @@
 
         <div class="input-group">
             <label class="label" for="producto"><b>Id Cliente:</b></label>
-            <input type="text" id="producto" class="form-control me-3" placeholder="Id Cliente">
-            <button class="btn btn-danger" >&times;</button>
+            <input type="text" id="producto" class="form-control me-3" placeholder="Id Cliente" #idCliente formControlName="idCliente">
+            <button class="btn btn-danger" (click)="limpiarFiltros()" >&times;</button>
         </div>
-    </div>
+    </form>
 
     <div class="button-container">
-        <button class="btn boton" style="background-color: darkturquoise;">Consultar</button>
-        <button class="btn boton" style="background-color: rgb(245, 58, 95);">Gráfico</button>
-        <button class="btn boton" style="background-color: rgb(0, 255, 76);" (click)="onImprimir()">Exportar</button>
+        <button class="btn boton" style="background-color: darkturquoise;" (click)="consultarPorFiltros()"><div class="d-flex justify-content-center"><mat-icon>search</mat-icon> <p>Consultar</p></div></button>
+        <button class="btn boton" style="background-color: rgb(54, 180, 92);"  (click)="exportarExcel()"> <div class="d-flex justify-content-center"><mat-icon>download</mat-icon> <p>Excel</p></div></button>
+        <button class="btn boton" style="background-color: rgb(245, 58, 95);" (click)="onImprimir()"><div class="d-flex justify-content-center"><mat-icon>picture_as_pdf</mat-icon> <p>PDF</p></div></button>
     </div>
 
     <table class="table">

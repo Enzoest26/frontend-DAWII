@@ -49,6 +49,7 @@ import { RegistroComponent } from './component/registro/registro.component';
 import { CarritoComprasComponent } from './component/carrito-compras/carrito-compras.component';
 import { GenerarBoletaComponent } from './component/generar-boleta/generar-boleta.component';
 import { MatNativeDateModule } from '@angular/material/core';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -104,7 +105,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     //NoopAnimationsModule
   ],
   exports:[],
-  providers: [MatSidenavModule, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorInterceptor, multi: true}],
+  providers: [MatSidenavModule, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorInterceptor, multi: true}, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
