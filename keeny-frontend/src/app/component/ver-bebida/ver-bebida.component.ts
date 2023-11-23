@@ -31,7 +31,7 @@ export class VerBebidaComponent implements OnInit{
 
   agregarCarrito(){
     const cantidad = this.inputRef.nativeElement.value;
-    let isAdded = this.carritoService.agregarProducto(this.bebida.idBebida, cantidad, this.bebida.precioBebida * cantidad, this.bebida.descripcionBebida);
+    let isAdded = this.carritoService.agregarProducto(this.bebida.idBebida, cantidad, this.bebida.precioBebida, this.bebida.descripcionBebida);
 
     if(isAdded == false){
       this.snackBar.openFromTemplate(this.notificacionError, {
