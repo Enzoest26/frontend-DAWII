@@ -320,8 +320,8 @@ export class ComidaComponent implements OnInit, AfterViewInit {
     this.tituloNotificacion = TITULO_ERROR_NOTIFICACION;
     this.snackBar.openFromTemplate(this.notificacion, {
       duration: 3 * 1000,
-      horizontalPosition: 'right',
-      verticalPosition: 'top',
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
     });
   }
 
@@ -330,8 +330,8 @@ export class ComidaComponent implements OnInit, AfterViewInit {
     this.tituloNotificacion = TITULO_EXITO_NOTIFICACION;
     this.snackBar.openFromTemplate(this.notificacion, {
       duration: 3 * 1000,
-      horizontalPosition: 'right',
-      verticalPosition: 'top',
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
     });
   }
 
